@@ -33,6 +33,7 @@ Documentação completa do Nexo, do início do desenvolvimento até o lançament
 | 07 | [Go-to-Market](./07-go-to-market.md) | Pricing, funil de beta, canais, plano de lançamento |
 | 08 | [Design System](./08-design-system.md) | Tokens, tipografia, componentes, tom de voz |
 | 09 | [Métricas e KPIs](./09-metricas-kpis.md) | North star, métricas de produto/negócio, instrumentação |
+| 10 | [Deploy GitHub Pages e Prototipo Estatico](./10-deploy-github-pages-prototipo.md) | Fluxo LP -> login -> app, arquivos publicados, deploy e rotina de edicao |
 
 ---
 
