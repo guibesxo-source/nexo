@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Nexo · Login</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --black: #000000;
+  --ink: #0A0A0A;
+  --white: #FFFFFF;
+  --off-white: #F7F7F5;
+  --green: #00E47C;
+  --green-deep: #00B863;
+  --green-soft: #DDF9EC;
+  --muted: #4A4A4A;
+  --line: rgba(0,0,0,0.12);
+  --grid: rgba(255,255,255,0.055);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--off-white);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+button, input { font: inherit; }
+a { color: inherit; }
+
+.login-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(420px, 0.92fr);
+}
+
+.login-hero {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding: clamp(24px, 4vw, 64px);
+  background:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    var(--black);
+  background-size: 72px 72px;
+  color: var(--white);
+}
+.login-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto -20% -28% 20%;
+  height: 42%;
+  background: radial-gradient(circle, rgba(0,228,124,0.14), transparent 62%);
+  pointer-events: none;
+}
+
+.brand {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+.brand-mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.brand-mark::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 99px;
+  background: var(--green);
+  box-shadow: 0 0 0 3px var(--black), 0 0 0 5px var(--green);
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  padding: 70px 0;
+}
+.eyebrow {
+  width: fit-content;
+  border: 1px solid rgba(0,228,124,0.48);
+  border-radius: 999px;
+  background: rgba(0,228,124,0.08);
+  color: var(--green);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  padding: 10px 14px;
+  text-transform: uppercase;
+}
+.eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 99px;
+  background: var(--green);
+  box-shadow: 0 0 0 5px rgba(0,228,124,0.15);
+}
+h1 {
+  max-width: 720px;
+  margin: 26px 0 18px;
+  font-size: clamp(46px, 7.4vw, 86px);
+  line-height: 0.98;
+  letter-spacing: -0.07em;
+}
+h1 mark {
+  display: inline-block;
+  border-radius: 7px;
+  background: var(--green);
+  color: var(--black);
+  padding: 0 12px 8px;
+}
+.hero-copy p {
+  max-width: 690px;
+  color: rgba(255,255,255,0.82);
+  font-size: clamp(16px, 1.4vw, 21px);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.hero-stats {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  max-width: 720px;
+}
+.stat {
+  min-height: 142px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.06);
+  padding: 20px;
+}
+.stat strong {
+  color: var(--green);
+  display: block;
+  font-size: 28px;
+  letter-spacing: -0.04em;
+  margin-bottom: 8px;
+}
+.stat span {
+  color: rgba(255,255,255,0.78);
+  display: block;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.login-panel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 80px clamp(24px, 5vw, 72px);
+  background: var(--off-white);
+}
+.back-link {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  box-shadow: 0 12px 30px -24px rgba(0,0,0,0.45);
+  font-size: 13px;
+  font-weight: 800;
+  padding: 11px 18px;
+  text-decoration: none;
+}
+
+.login-card {
+  width: min(100%, 460px);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--white);
+  box-shadow: 0 32px 70px -38px rgba(0,0,0,0.45);
+  padding: clamp(26px, 4vw, 40px);
+}
+.login-card .brand {
+  color: var(--black);
+  font-size: 21px;
+}
+.login-card .brand-mark {
+  width: 30px;
+  height: 30px;
+  background: var(--black);
+}
+.login-card .brand-mark::before {
+  width: 12px;
+  height: 12px;
+  box-shadow: 0 0 0 3px var(--black), 0 0 0 5px var(--green);
+}
+.login-card h2 {
+  font-size: clamp(28px, 4vw, 34px);
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  margin: 28px 0 8px;
+}
+.login-card p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.45;
+  margin: 0 0 26px;
+}
+.field {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 17px;
+}
+label {
+  font-size: 13px;
+  font-weight: 900;
+}
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  min-height: 52px;
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  background: var(--white);
+  color: var(--ink);
+  outline: none;
+  padding: 0 14px;
+}
+input:focus {
+  border-color: var(--black);
+  box-shadow: 0 0 0 4px rgba(0,228,124,0.13);
+}
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 2px 0 20px;
+}
+.check {
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+.check input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--green);
+}
+.access-link {
+  border: 0;
+  background: transparent;
+  color: var(--black);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 900;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.submit {
+  width: 100%;
+  min-height: 56px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--green);
+  color: var(--black);
+  font-weight: 900;
+}
+.submit:hover { background: #10EE89; }
+.demo-note {
+  border-radius: 12px;
+  background: var(--green-soft);
+  color: var(--green-deep);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.45;
+  margin-top: 16px;
+  padding: 14px 18px;
+  text-align: center;
+}
+.error {
+  display: none;
+  border-radius: 10px;
+  background: #FEE2E2;
+  color: #B91C1C;
+  font-size: 13px;
+  font-weight: 800;
+  margin: -4px 0 14px;
+  padding: 10px 12px;
+}
+.error.show { display: block; }
+
+@media (max-width: 980px) {
+  .login-shell {
+    grid-template-columns: 1fr;
+  }
+  .login-hero {
+    min-height: auto;
+    padding-bottom: 34px;
+  }
+  .hero-copy {
+    padding: 72px 0 44px;
+  }
+  .login-panel {
+    min-height: auto;
+    padding-top: 88px;
+  }
+}
+
+@media (max-width: 640px) {
+  .login-hero,
+  .login-panel {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  .hero-stats {
+    grid-template-columns: 1fr;
+  }
+  .stat {
+    min-height: 0;
+  }
+  .back-link {
+    right: 18px;
+  }
+  .form-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+<body>
+<main class="login-shell">
+  <section class="login-hero" aria-label="Resumo Nexo">
+    <a href="index.html" class="brand" aria-label="Nexo">
+      <span class="brand-mark"></span>
+      Nexo
+    </a>
+
+    <div class="hero-copy">
+      <div class="eyebrow">Acesso ao produto</div>
+      <h1>Entre no hub que tira <mark>eventos do caos.</mark></h1>
+      <p>Uma camada unica para acompanhar inscritos, orcamento, tarefas e equipe sem alternar entre planilhas, grupos e ferramentas soltas.</p>
+    </div>
+
+    <div class="hero-stats" aria-label="Indicadores da demo">
+      <div class="stat"><strong>320</strong><span>inscritos gerenciados na demo</span></div>
+      <div class="stat"><strong>82%</strong><span>do orcamento monitorado em tempo real</span></div>
+      <div class="stat"><strong>18</strong><span>tarefas criticas acompanhadas pela equipe</span></div>
+    </div>
+  </section>
+
+  <section class="login-panel" aria-label="Login">
+    <a class="back-link" href="index.html">Voltar para LP</a>
+
+    <form class="login-card" id="loginForm">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        Nexo
+      </div>
+
+      <h2>Entrar no Nexo</h2>
+      <p>Use o acesso demonstrativo abaixo para abrir a estrutura original do app.</p>
+
+      <div class="field">
+        <label for="email">E-mail</label>
+        <input id="email" name="email" type="email" autocomplete="email" value="demo@nexo.events" />
+      </div>
+
+      <div class="field">
+        <label for="password">Senha</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" value="nexodemo" />
+      </div>
+
+      <div class="form-row">
+        <label class="check">
+          <input id="remember" name="remember" type="checkbox" checked />
+          Manter conectado
+        </label>
+        <button class="access-link" type="button">Solicitar acesso</button>
+      </div>
+
+      <div class="error" id="errorBox">Preencha e-mail e senha para abrir a demo.</div>
+      <button class="submit" type="submit">Entrar no produto</button>
+
+      <div class="demo-note">
+        Acesso demonstrativo: qualquer e-mail e senha preenchidos abrem o app.
+      </div>
+    </form>
+  </section>
+</main>
+
+<script>
+const AUTH_KEY = 'nexo_demo_session';
+
+function getSafeNext() {
+  const params = new URLSearchParams(window.location.search);
+  const next = params.get('next') || 'app.html';
+  return next.startsWith('app.html') ? next : 'app.html';
+}
+
+function createDemoSession(email, remember) {
+  return {
+    email,
+    remember,
+    provider: 'demo',
+    createdAt: new Date().toISOString()
+  };
+}
+
+document.getElementById('loginForm').addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value.trim();
+  const remember = document.getElementById('remember').checked;
+  const errorBox = document.getElementById('errorBox');
+
+  if (!email || !password) {
+    errorBox.classList.add('show');
+    return;
+  }
+
+  errorBox.classList.remove('show');
+  localStorage.setItem(AUTH_KEY, JSON.stringify(createDemoSession(email, remember)));
+  window.location.href = getSafeNext();
+});
+</script>
+</body>
+</html>
