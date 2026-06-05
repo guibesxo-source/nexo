@@ -1,0 +1,2933 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Nexo — LP + Demo do Produto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<!-- HubSpot Forms embed (portal 51566439) — carrega o formulário real do beta do Nexo -->
+<script src="https://js.hsforms.net/forms/embed/51566439.js" defer></script>
+<style>
+  :root {
+    /* Core palette — BLACK / WHITE / GREEN */
+    --black: #000000;
+    --ink: #0A0A0A;
+    --ink-2: #111111;
+    --ink-3: #1A1A1A;
+    --white: #FFFFFF;
+    --off-white: #F7F7F5;
+    --green: #00E47C;       /* primary action */
+    --green-deep: #00B863;  /* hover/darker */
+    --green-soft: #E6FBF1;  /* tinted bg */
+    --green-glow: rgba(0,228,124,0.35);
+
+    --text: #0A0A0A;
+    --text-inv: #FFFFFF;
+    --muted: #4A4A4A;
+    --muted-inv: #B8B8B8;
+    --dim: #6B6B6B;
+
+    --line: rgba(0,0,0,0.10);
+    --line-inv: rgba(255,255,255,0.10);
+    --line-strong: rgba(0,0,0,0.18);
+
+    --radius-card: 18px;
+    --radius-btn: 10px;
+    --container: 1240px;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--off-white);
+    color: var(--text);
+    font-weight: 400;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  button, input { font-family: inherit; }
+
+  .container {
+    width: 100%;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 0;
+    border-radius: var(--radius-btn);
+    padding: 14px 22px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .btn-primary {
+    background: var(--green);
+    color: var(--black);
+    font-weight: 700;
+  }
+  .btn-primary:hover {
+    background: var(--green-deep);
+    transform: translateY(-1px);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--black);
+    border: 1.5px solid var(--black);
+  }
+  .btn-outline:hover { background: var(--black); color: var(--white); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--white);
+    border: 1.5px solid rgba(255,255,255,0.3);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }
+  .btn-sm { padding: 10px 16px; font-size: 14px; }
+  .btn-lg { padding: 18px 28px; font-size: 16px; }
+
+  /* ---------- Inputs ---------- */
+  .input {
+    background: var(--white);
+    border: 1.5px solid var(--line);
+    color: var(--text);
+    padding: 14px 16px;
+    border-radius: var(--radius-btn);
+    font-size: 15px;
+    width: 100%;
+    transition: all 0.18s ease;
+  }
+  .input::placeholder { color: var(--dim); }
+  .input:focus {
+    outline: none;
+    border-color: var(--black);
+  }
+
+  /* ---------- Marquee ---------- */
+  .marquee {
+    background: var(--black);
+    color: var(--white);
+    overflow: hidden;
+    border-bottom: 1px solid var(--line-inv);
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 40s linear infinite;
+    padding: 12px 0;
+  }
+  .marquee-track > * {
+    flex-shrink: 0;
+    padding: 0 28px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+  }
+  .marquee-track .ico { color: var(--green); font-size: 14px; }
+  .marquee-track a { text-decoration: underline; text-underline-offset: 3px; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ---------- Nav ---------- */
+  nav.site {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 76px;
+  }
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.03em;
+    color: var(--black);
+  }
+  .logo .mark {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: var(--black);
+    position: relative;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .logo .mark::before {
+    content: "";
+    width: 12px; height: 12px;
+    border-radius: 99px;
+    background: var(--green);
+    box-shadow: 0 0 0 3px var(--black), 0 0 0 4.5px var(--green);
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+  }
+  .nav-links a {
+    font-size: 14.5px;
+    font-weight: 500;
+    color: #1A1A1A;
+    transition: color 0.2s ease;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .nav-links a:hover { color: var(--green-deep); }
+  .nav-links a .chev { font-size: 10px; opacity: 0.6; }
+  .nav-cta-wrap { display: flex; align-items: center; gap: 12px; }
+
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-cta-wrap .btn-outline { display: none; }
+  }
+
+  /* ---------- Section base ---------- */
+  section { padding: 96px 0; position: relative; }
+  @media (max-width: 768px) { section { padding: 64px 0; } }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--green-deep);
+    background: var(--green-soft);
+    border: 1px solid rgba(0,184,99,0.25);
+    padding: 7px 12px;
+    border-radius: 999px;
+    margin-bottom: 22px;
+  }
+  .eyebrow .pulse {
+    width: 7px; height: 7px; border-radius: 99px;
+    background: var(--green-deep);
+    animation: pulse 1.6s ease-out infinite;
+    box-shadow: 0 0 0 0 rgba(0,184,99,0.6);
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0,184,99,0.6); }
+    100% { box-shadow: 0 0 0 8px rgba(0,184,99,0); }
+  }
+  .eyebrow.on-dark {
+    color: var(--green);
+    background: rgba(0,228,124,0.10);
+    border-color: rgba(0,228,124,0.4);
+  }
+  .eyebrow.on-dark .pulse { background: var(--green); box-shadow: 0 0 0 0 rgba(0,228,124,0.7); }
+
+  h1, h2, h3 { letter-spacing: -0.03em; line-height: 1.05; margin: 0; color: var(--text); }
+  h1 { font-weight: 800; }
+  h2 { font-weight: 800; }
+  h3 { font-weight: 700; }
+
+  .h-display {
+    font-size: clamp(44px, 6vw, 72px);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+  }
+  .h-section {
+    font-size: clamp(32px, 4.4vw, 52px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+  .lead {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 60ch;
+    line-height: 1.6;
+  }
+  .grad-green { color: var(--green-deep); }
+
+  /* ---------- Reveal ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ============================================ */
+  /* HERO — full-bleed with image + form card     */
+  /* ============================================ */
+  .hero {
+    position: relative;
+    background: var(--black);
+    color: var(--white);
+    padding: 0;
+    overflow: hidden;
+    min-height: 720px;
+    display: flex;
+    align-items: center;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .hero-bg image-slot {
+    width: 100%;
+    height: 100%;
+    --is-bg: rgba(255,255,255,0.04);
+    --is-fg: rgba(255,255,255,0.18);
+    --is-accent: var(--green);
+  }
+  .hero-bg::after {
+    /* Cinematic gradient over the image so left text stays readable */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.65) 38%, rgba(0,0,0,0.25) 65%, rgba(0,0,0,0.45) 100%),
+      radial-gradient(800px 600px at 18% 50%, rgba(0,228,124,0.10), transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 96px 0 110px;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 64px;
+    align-items: center;
+  }
+  @media (max-width: 1000px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-inner { padding: 72px 0 80px; }
+  }
+
+  .hero h1 { color: var(--white); }
+  .hero h1 .mark {
+    background: var(--green);
+    color: var(--black);
+    padding: 0 12px;
+    border-radius: 8px;
+    display: inline-block;
+    transform: rotate(-1deg);
+    box-shadow: 0 8px 30px rgba(0,228,124,0.25);
+  }
+
+  .hero-bullets {
+    list-style: none;
+    margin: 28px 0 0;
+    padding: 0;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .hero-bullets li {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 17px;
+    color: var(--white);
+    font-weight: 500;
+  }
+  .hero-bullets .check {
+    flex-shrink: 0;
+    width: 22px; height: 22px;
+    border-radius: 99px;
+    background: var(--green);
+    color: var(--black);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 900;
+  }
+
+  .trust-card {
+    margin-top: 44px;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 14px;
+    padding: 16px 20px;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 280px;
+  }
+  .trust-card .t-head {
+    font-size: 13px; font-weight: 700; color: var(--white); letter-spacing: 0.01em;
+  }
+  .trust-card .t-row {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: var(--muted-inv);
+  }
+  .trust-card .stars { color: var(--green); letter-spacing: 1px; font-size: 14px; }
+  .trust-card .score { color: var(--white); font-weight: 700; }
+  .trust-card .meta { font-size: 12.5px; color: var(--muted-inv); }
+
+  /* Right: signup card */
+  .signup-card {
+    background: var(--white);
+    color: var(--text);
+    border-radius: 20px;
+    padding: 36px;
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.05);
+    max-width: 460px;
+    width: 100%;
+    justify-self: end;
+  }
+  @media (max-width: 1000px) { .signup-card { justify-self: start; } }
+
+  .signup-card h2 {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    margin-bottom: 6px;
+  }
+  .signup-card .sub {
+    font-size: 14px; color: var(--muted); margin-bottom: 22px;
+  }
+  .social-auth {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    margin-bottom: 18px;
+  }
+  .social-btn {
+    background: var(--white);
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
+    height: 48px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    transition: all 0.18s ease;
+    color: var(--text);
+  }
+  .social-btn:hover { border-color: var(--black); background: var(--off-white); }
+  .social-btn svg { width: 18px; height: 18px; }
+  .divider {
+    display: flex; align-items: center; gap: 12px;
+    color: var(--dim);
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin: 18px 0;
+  }
+  .divider::before, .divider::after {
+    content: ""; flex: 1; height: 1px; background: var(--line);
+  }
+  .field-stack { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+  .terms {
+    font-size: 12px; color: var(--muted); line-height: 1.5;
+    margin: 14px 0 18px;
+  }
+  .terms a { color: var(--text); text-decoration: underline; text-underline-offset: 2px; font-weight: 600; }
+  .signup-card .btn-primary {
+    width: 100%;
+    height: 54px;
+    font-size: 16px;
+  }
+  .signup-foot {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--muted);
+    text-align: center;
+  }
+  .signup-foot a { color: var(--text); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+
+  .form-success {
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: var(--green-soft);
+    border: 1px solid rgba(0,184,99,0.35);
+    border-radius: var(--radius-btn);
+    color: var(--green-deep);
+    font-size: 14px;
+    font-weight: 600;
+    display: none;
+    text-align: center;
+  }
+  .form-success.show { display: block; }
+
+  /* ============================================ */
+  /* HUBSPOT EMBEDDED FORM                         */
+  /* Theming "best-effort". O controle visual      */
+  /* completo (cores/fontes dos campos) fica em    */
+  /* HubSpot → Forms → Style & preview.            */
+  /* ============================================ */
+  .hs-form-frame {
+    width: 100%;
+    min-height: 40px;
+  }
+  .signup-card .hs-form-frame { margin-top: 8px; }
+
+  /* Na waitlist o fundo é preto: damos um card branco
+     ao form pra garantir legibilidade dos campos/labels. */
+  .waitlist .hs-form-frame {
+    max-width: 520px;
+    margin: 0 auto;
+    text-align: left;
+    background: var(--white);
+    border-radius: var(--radius-card);
+    padding: 24px;
+    box-shadow: 0 30px 80px -24px rgba(0,0,0,0.5);
+  }
+
+  /* Encaixe dos inputs no estilo do Nexo */
+  .hs-form-frame input[type="text"],
+  .hs-form-frame input[type="email"],
+  .hs-form-frame input[type="tel"],
+  .hs-form-frame input[type="number"],
+  .hs-form-frame select,
+  .hs-form-frame textarea {
+    width: 100%;
+    border-radius: var(--radius-btn);
+  }
+  /* Botão de envio com a cor de ação do Nexo */
+  .hs-form-frame input[type="submit"],
+  .hs-form-frame button[type="submit"] {
+    background: var(--green) !important;
+    color: var(--black) !important;
+    border: 0 !important;
+    border-radius: var(--radius-btn) !important;
+    font-weight: 700 !important;
+    cursor: pointer;
+  }
+  .hs-form-frame input[type="submit"]:hover,
+  .hs-form-frame button[type="submit"]:hover {
+    background: var(--green-deep) !important;
+  }
+
+  /* ============================================ */
+  /* LOGOS / SOCIAL PROOF                          */
+  /* ============================================ */
+  .social {
+    background: var(--white);
+    padding: 48px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .social .lead-sm {
+    font-size: 13px;
+    color: var(--dim);
+    text-align: center;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 600;
+  }
+  .logo-row {
+    display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+    gap: 56px;
+    color: var(--muted);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+  }
+  .logo-row span { opacity: 0.55; transition: opacity 0.2s ease; }
+  .logo-row span:hover { opacity: 1; }
+
+  /* ============================================ */
+  /* DOBRA — Product showcase (screenshots)        */
+  /* ============================================ */
+  .showcase { background: var(--off-white); padding-bottom: 0; }
+  .showcase .sec-head { text-align: center; margin-bottom: 64px; }
+  .showcase .sec-head .lead { margin: 18px auto 0; }
+
+  /* Tabs */
+  .show-tabs {
+    display: inline-flex;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 6px;
+    gap: 4px;
+    margin: 0 auto 40px;
+  }
+  .show-tabs button {
+    border: 0; background: transparent;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-size: 14px; font-weight: 600;
+    color: var(--muted); cursor: pointer;
+    transition: all 0.18s ease;
+  }
+  .show-tabs button.active {
+    background: var(--black); color: var(--white);
+  }
+  .show-tabs button:hover:not(.active) { color: var(--black); }
+
+  .show-stage {
+    position: relative;
+    background: var(--black);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 40px 80px -30px rgba(0,0,0,0.4);
+    border: 1px solid var(--ink-3);
+    overflow: hidden;
+  }
+  .show-stage::before {
+    content: "";
+    position: absolute;
+    top: -200px; right: -150px;
+    width: 500px; height: 500px;
+    background: radial-gradient(closest-side, rgba(0,228,124,0.18), transparent 70%);
+    filter: blur(20px);
+    pointer-events: none;
+  }
+
+  .show-panel { display: none; position: relative; }
+  .show-panel.active { display: block; }
+
+  /* App browser chrome */
+  .app-window {
+    background: var(--white);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: 0 20px 50px -10px rgba(0,0,0,0.35);
+  }
+  .app-bar {
+    height: 44px;
+    background: #F2F2F0;
+    display: flex; align-items: center; gap: 8px;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .app-bar .dots { display: flex; gap: 6px; }
+  .app-bar .dots i { width: 11px; height: 11px; border-radius: 99px; background: #DDD; }
+  .app-bar .dots i:nth-child(1) { background: #FF5F57; }
+  .app-bar .dots i:nth-child(2) { background: #FFBD2E; }
+  .app-bar .dots i:nth-child(3) { background: #28C840; }
+  .app-bar .url {
+    flex: 1; text-align: center;
+    font-size: 12px; color: var(--muted);
+    background: var(--white);
+    padding: 5px 14px; border-radius: 6px;
+    max-width: 320px; margin: 0 auto;
+    border: 1px solid var(--line);
+  }
+
+  .app-body {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    min-height: 540px;
+    background: var(--white);
+  }
+  @media (max-width: 800px) {
+    .app-body { grid-template-columns: 1fr; min-height: auto; }
+    .app-side { display: none; }
+  }
+  .app-side {
+    background: #FAFAF8;
+    border-right: 1px solid var(--line);
+    padding: 20px 14px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .side-logo {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-weight: 800; font-size: 16px;
+    margin-bottom: 22px;
+    padding: 0 8px;
+  }
+  .side-logo .mk {
+    width: 22px; height: 22px;
+    border-radius: 6px; background: var(--black);
+    display:inline-flex; align-items:center; justify-content:center;
+  }
+  .side-logo .mk::before {
+    content: ""; width: 9px; height: 9px; border-radius: 99px;
+    background: var(--green);
+    box-shadow: 0 0 0 2px var(--black), 0 0 0 3px var(--green);
+  }
+  .side-link {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13.5px; color: var(--muted);
+    padding: 9px 10px;
+    border-radius: 8px;
+    font-weight: 500;
+  }
+  .side-link.active { background: var(--white); color: var(--black); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+  .side-link .ic { width: 16px; text-align: center; opacity: 0.85; }
+  .side-section {
+    font-size: 11px; font-weight: 700; color: var(--dim);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 18px 10px 8px;
+  }
+
+  .app-main { padding: 26px 30px; overflow: hidden; }
+  .am-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 22px;
+  }
+  .am-title { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
+  .am-actions { display: flex; gap: 10px; }
+  .am-btn {
+    padding: 8px 14px; font-size: 13px; font-weight: 600;
+    border-radius: 8px; border: 1px solid var(--line); background: var(--white);
+    color: var(--text); cursor: pointer;
+  }
+  .am-btn.primary { background: var(--green); color: var(--black); border-color: var(--green); }
+
+  /* ----- Panel 1: Dashboard ----- */
+  .stat-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    margin-bottom: 22px;
+  }
+  @media (max-width: 700px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+  .stat {
+    background: #FAFAF8;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px;
+  }
+  .stat .lbl { font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+  .stat .val { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; margin-top: 6px; }
+  .stat .delta { font-size: 11.5px; font-weight: 600; margin-top: 4px; color: var(--green-deep); }
+  .stat .delta.neg { color: #DC2626; }
+
+  .chart-row {
+    display: grid; grid-template-columns: 1.6fr 1fr; gap: 14px;
+  }
+  @media (max-width: 700px) { .chart-row { grid-template-columns: 1fr; } }
+  .chart-card {
+    background: #FAFAF8;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .chart-card h4 { font-size: 14px; font-weight: 700; margin: 0 0 16px; }
+
+  .bar-chart {
+    display: flex; align-items: flex-end; gap: 10px;
+    height: 160px;
+  }
+  .bar-chart .col {
+    flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;
+    height: 100%;
+  }
+  .bar-chart .col .b {
+    width: 100%;
+    background: var(--green);
+    border-radius: 6px 6px 0 0;
+    min-height: 4px;
+    position: relative;
+  }
+  .bar-chart .col .b.alt { background: #DDDDDA; }
+  .bar-chart .col .lbl { font-size: 10.5px; color: var(--dim); }
+
+  .donut-wrap { display: flex; align-items: center; gap: 16px; }
+  .donut {
+    width: 120px; height: 120px; border-radius: 99px;
+    background: conic-gradient(var(--green) 0 62%, #E8E8E5 62% 100%);
+    position: relative;
+    flex-shrink: 0;
+  }
+  .donut::after {
+    content: ""; position: absolute; inset: 14px;
+    background: #FAFAF8; border-radius: 99px;
+  }
+  .donut .center {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    z-index: 2;
+  }
+  .donut .center .n { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
+  .donut .center .l { font-size: 10px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+  .legend { display: flex; flex-direction: column; gap: 8px; font-size: 12.5px; }
+  .legend i { display: inline-block; width: 9px; height: 9px; border-radius: 3px; margin-right: 8px; vertical-align: middle; }
+
+  /* ----- Panel 2: Inscritos table ----- */
+  .table-search {
+    display: flex; gap: 10px; align-items: center;
+    margin-bottom: 16px;
+  }
+  .search-input {
+    flex: 1; background: #FAFAF8;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 13.5px;
+    color: var(--text);
+  }
+  .filter-pill {
+    padding: 8px 14px; font-size: 12.5px; font-weight: 600;
+    border-radius: 999px; border: 1px solid var(--line);
+    background: var(--white); color: var(--text); cursor: pointer;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .filter-pill.active { background: var(--black); color: var(--white); border-color: var(--black); }
+
+  table.inscritos {
+    width: 100%; border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  table.inscritos th {
+    text-align: left; padding: 12px 10px;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--dim); font-weight: 700;
+    border-bottom: 1px solid var(--line);
+  }
+  table.inscritos td {
+    padding: 14px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .avatar {
+    width: 30px; height: 30px; border-radius: 99px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+    color: var(--white);
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  .name-cell { display: inline-flex; align-items: center; }
+  .name-cell .nm { font-weight: 600; }
+  .name-cell .em { color: var(--dim); font-size: 12px; }
+  .badge {
+    padding: 3px 9px; border-radius: 99px;
+    font-size: 11px; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .badge.confirmed { background: var(--green-soft); color: var(--green-deep); }
+  .badge.pending { background: #FEF3C7; color: #B45309; }
+  .badge.checked { background: #E0F2FE; color: #0369A1; }
+  .badge i { width: 6px; height: 6px; border-radius: 99px; background: currentColor; }
+
+  /* ----- Panel 3: Financeiro ----- */
+  .fin-top {
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; margin-bottom: 20px;
+  }
+  @media (max-width: 700px) { .fin-top { grid-template-columns: 1fr; } }
+  .budget-card {
+    background: var(--black); color: var(--white);
+    border-radius: 12px;
+    padding: 22px;
+    position: relative; overflow: hidden;
+  }
+  .budget-card::before {
+    content: "";
+    position: absolute; right: -60px; top: -60px;
+    width: 240px; height: 240px;
+    background: radial-gradient(closest-side, rgba(0,228,124,0.25), transparent 70%);
+  }
+  .budget-card .lbl { font-size: 12px; color: var(--muted-inv); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
+  .budget-card .big { font-size: 36px; font-weight: 800; letter-spacing: -0.025em; margin: 8px 0 4px; }
+  .budget-card .big .accent { color: var(--green); }
+  .budget-card .sub { font-size: 13px; color: var(--muted-inv); }
+  .budget-bar { margin-top: 18px; height: 8px; background: rgba(255,255,255,0.12); border-radius: 99px; overflow: hidden; position: relative; z-index: 1; }
+  .budget-bar i { display: block; height: 100%; background: var(--green); border-radius: 99px; }
+
+  .cat-card {
+    background: #FAFAF8;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .cat-card h4 { font-size: 13px; font-weight: 700; margin: 0 0 14px; }
+  .cat-row {
+    display: grid; grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 0;
+    font-size: 13px;
+  }
+  .cat-row .nm { font-weight: 600; }
+  .cat-row .vl { color: var(--text); font-weight: 700; }
+  .cat-row .bar {
+    grid-column: 1 / -1;
+    height: 5px; background: #E8E8E5; border-radius: 99px; overflow: hidden;
+  }
+  .cat-row .bar i { display: block; height: 100%; background: var(--green); border-radius: 99px; }
+
+  .tx-list {
+    background: #FAFAF8;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .tx-row {
+    display: grid; grid-template-columns: auto 1fr auto auto;
+    align-items: center; gap: 14px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+    font-size: 13.5px;
+  }
+  .tx-row:last-child { border-bottom: 0; }
+  .tx-icon {
+    width: 34px; height: 34px; border-radius: 8px;
+    background: var(--white); border: 1px solid var(--line);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .tx-row .ttl { font-weight: 600; }
+  .tx-row .meta { color: var(--dim); font-size: 12px; margin-top: 2px; }
+  .tx-row .amount { font-weight: 700; }
+  .tx-row .amount.out { color: #DC2626; }
+  .tx-row .amount.in { color: var(--green-deep); }
+  .tx-row .stat-tag { font-size: 11px; padding: 3px 8px; border-radius: 99px; font-weight: 600; }
+  .tx-row .stat-tag.paid { background: var(--green-soft); color: var(--green-deep); }
+  .tx-row .stat-tag.pending { background: #FEF3C7; color: #B45309; }
+
+  /* ============================================ */
+  /* PROBLEMA                                       */
+  /* ============================================ */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  @media (max-width: 900px) { .problem-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .problem-grid p { color: var(--muted); font-size: 17px; line-height: 1.65; }
+
+  .pains {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 768px) { .pains { grid-template-columns: 1fr; } }
+  .pain {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    padding: 24px;
+    display: flex; flex-direction: column; gap: 14px;
+    transition: all 0.25s ease;
+  }
+  .pain:hover { border-color: var(--black); transform: translateY(-2px); }
+  .pain .ico {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: var(--off-white);
+    border: 1px solid var(--line);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .pain p { font-size: 15px; color: var(--text); line-height: 1.5; margin: 0; font-weight: 500; }
+
+  /* ============================================ */
+  /* FEATURES                                       */
+  /* ============================================ */
+  .features-section { background: var(--white); }
+  .sec-head { text-align: center; margin-bottom: 56px; }
+  .sec-head .lead { margin: 18px auto 0; }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 960px) { .features { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .features { grid-template-columns: 1fr; } }
+
+  .feature {
+    background: var(--off-white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    padding: 28px;
+    transition: all 0.25s ease;
+  }
+  .feature:hover {
+    transform: translateY(-3px);
+    border-color: var(--black);
+    background: var(--white);
+    box-shadow: 0 14px 40px -16px rgba(0,0,0,0.12);
+  }
+  .feature .ico-wrap {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--green);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 20px; color: var(--black);
+    margin-bottom: 18px;
+  }
+  .feature h3 {
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.015em;
+  }
+  .feature p { color: var(--muted); font-size: 14.5px; line-height: 1.6; margin: 0; }
+
+  /* ============================================ */
+  /* PERSONAS                                       */
+  /* ============================================ */
+  .personas-section { background: var(--off-white); }
+  .personas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 900px) { .personas { grid-template-columns: 1fr; } }
+
+  .persona {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    padding: 36px;
+    transition: all 0.25s ease;
+  }
+  .persona:hover { border-color: var(--black); }
+  .persona .tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green-deep);
+    background: var(--green-soft);
+    padding: 5px 12px;
+    border-radius: 999px;
+    margin-bottom: 22px;
+  }
+  .persona blockquote {
+    margin: 0 0 18px;
+    font-size: 21px;
+    line-height: 1.35;
+    color: var(--text);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+  }
+  .persona blockquote::before { content: "“"; color: var(--green-deep); margin-right: 2px; }
+  .persona blockquote::after { content: "”"; color: var(--green-deep); margin-left: 2px; }
+  .persona p { color: var(--muted); font-size: 15px; line-height: 1.6; margin: 0 0 22px; }
+  .persona ul {
+    list-style: none;
+    margin: 0; padding: 22px 0 0;
+    display: flex; flex-direction: column; gap: 10px;
+    border-top: 1px solid var(--line);
+  }
+  .persona ul li {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14.5px;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .persona ul li::before {
+    content: "✓";
+    color: var(--black);
+    font-weight: 900;
+    width: 22px; height: 22px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--green);
+    border-radius: 6px;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  /* ============================================ */
+  /* WAITLIST                                       */
+  /* ============================================ */
+  .waitlist {
+    background: var(--black);
+    color: var(--white);
+    position: relative; overflow: hidden;
+  }
+  .waitlist::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(900px 500px at 50% 0%, rgba(0,228,124,0.18), transparent 60%),
+      radial-gradient(700px 400px at 80% 100%, rgba(0,228,124,0.10), transparent 60%);
+    pointer-events: none;
+  }
+  .waitlist-inner {
+    position: relative;
+    text-align: center;
+  }
+  .waitlist-inner h2 { color: var(--white); max-width: 18ch; margin: 16px auto 14px; }
+  .waitlist-inner .lead { color: var(--muted-inv); margin: 0 auto; }
+
+  .benefits {
+    margin: 44px auto 36px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 920px;
+    text-align: left;
+  }
+  @media (max-width: 800px) { .benefits { grid-template-columns: 1fr; max-width: 480px; } }
+  .benefit {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: var(--radius-card);
+    padding: 20px;
+  }
+  .benefit .ico {
+    width: 36px; height: 36px;
+    border-radius: 8px; background: var(--green); color: var(--black);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .benefit p { font-size: 14.5px; line-height: 1.5; margin: 0; color: var(--white); font-weight: 500; }
+
+  .waitlist-form {
+    display: flex;
+    gap: 10px;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .waitlist-form .input { flex: 1; background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.18); color: var(--white); }
+  .waitlist-form .input::placeholder { color: var(--muted-inv); }
+  .waitlist-form .input:focus { border-color: var(--green); background: rgba(255,255,255,0.10); }
+  .waitlist .microcopy { margin-top: 16px; font-size: 13px; color: var(--muted-inv); }
+
+  /* ============================================ */
+  /* FOOTER                                         */
+  /* ============================================ */
+  footer.site {
+    border-top: 1px solid var(--line);
+    padding: 48px 0 36px;
+    background: var(--white);
+  }
+  .foot-grid {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px; flex-wrap: wrap;
+  }
+  .foot-left { display: flex; flex-direction: column; gap: 8px; }
+  .foot-tagline { color: var(--muted); font-size: 14px; }
+  .foot-links { display: flex; gap: 28px; font-size: 14px; color: var(--muted); }
+  .foot-links a { transition: color 0.2s ease; }
+  .foot-links a:hover { color: var(--black); }
+  .copyright { color: var(--dim); font-size: 13px; margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); }
+
+  /* ============================================ */
+  /* SINGLE-FILE FLOW: LP -> LOGIN -> PRODUCT DEMO */
+  /* ============================================ */
+  image-slot {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    background: #080808;
+  }
+  image-slot::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(115deg, rgba(255,255,255,0.02), rgba(0,228,124,0.08) 42%, rgba(255,255,255,0.03)),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 96px),
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 96px);
+    opacity: 0.9;
+  }
+  image-slot::after {
+    content: "";
+    position: absolute;
+    left: 55%;
+    right: 8%;
+    bottom: 12%;
+    height: 36%;
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 18px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02)),
+      linear-gradient(90deg, transparent 0 18%, rgba(0,228,124,0.65) 18% 20%, transparent 20% 42%, rgba(255,255,255,0.22) 42% 44%, transparent 44%);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.55);
+  }
+
+  .login-screen,
+  .demo-app,
+  .original-app-shell {
+    display: none;
+  }
+
+  body.mode-login,
+  body.mode-app {
+    background: var(--off-white);
+  }
+  body.mode-login > .marquee,
+  body.mode-login > nav.site,
+  body.mode-login > section,
+  body.mode-login > footer.site,
+  body.mode-login > .demo-app,
+  body.mode-login > .original-app-shell,
+  body.mode-app > .marquee,
+  body.mode-app > nav.site,
+  body.mode-app > section,
+  body.mode-app > footer.site,
+  body.mode-app > .login-screen,
+  body.mode-app > .demo-app {
+    display: none !important;
+  }
+  body.mode-login > .login-screen {
+    display: grid;
+  }
+  body.mode-app > .original-app-shell {
+    display: block;
+  }
+
+  .original-app-shell {
+    min-height: 100vh;
+    background: var(--white);
+  }
+  .original-app-frame {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    border: 0;
+    background: var(--white);
+  }
+  .original-app-fallback {
+    display: none;
+    padding: 14px 18px;
+    background: #FEF3C7;
+    color: #92400E;
+    border-bottom: 1px solid rgba(146,64,14,0.18);
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .login-screen {
+    min-height: 100vh;
+    grid-template-columns: minmax(0, 1.05fr) minmax(420px, 0.95fr);
+    background: var(--black);
+    color: var(--white);
+  }
+  .login-visual {
+    min-height: 100vh;
+    padding: 46px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid var(--line-inv);
+    background:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+      var(--black);
+    background-size: 72px 72px;
+  }
+  .login-visual .logo {
+    color: var(--white);
+  }
+  .login-visual .logo .mark {
+    background: var(--white);
+  }
+  .login-visual .logo .mark::before {
+    box-shadow: 0 0 0 3px var(--white), 0 0 0 4.5px var(--green);
+  }
+  .login-copy {
+    max-width: 620px;
+  }
+  .login-copy h1 {
+    color: var(--white);
+    font-size: clamp(40px, 5vw, 68px);
+    line-height: 1.02;
+    margin: 0 0 22px;
+  }
+  .login-copy h1 span {
+    display: inline-block;
+    background: var(--green);
+    color: var(--black);
+    border-radius: 8px;
+    padding: 0 12px;
+  }
+  .login-copy p {
+    max-width: 54ch;
+    color: var(--muted-inv);
+    font-size: 17px;
+    margin: 0;
+  }
+  .login-proof {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    max-width: 620px;
+  }
+  .login-proof-card {
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.05);
+    border-radius: 14px;
+    padding: 18px;
+  }
+  .login-proof-card strong {
+    display: block;
+    color: var(--green);
+    font-size: 24px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .login-proof-card span {
+    color: var(--muted-inv);
+    font-size: 12.5px;
+    line-height: 1.35;
+  }
+  .login-panel {
+    min-height: 100vh;
+    background: var(--off-white);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    position: relative;
+  }
+  .login-back {
+    position: absolute;
+    top: 28px;
+    right: 32px;
+    border: 1px solid var(--line);
+    background: var(--white);
+    border-radius: 999px;
+    color: var(--text);
+    cursor: pointer;
+    font-weight: 700;
+    padding: 10px 16px;
+  }
+  .login-card {
+    width: min(100%, 460px);
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    box-shadow: 0 30px 70px -34px rgba(0,0,0,0.45);
+    padding: 34px;
+  }
+  .login-card h2 {
+    font-size: 30px;
+    line-height: 1.08;
+    margin: 18px 0 10px;
+  }
+  .login-card .sub {
+    margin: 0 0 24px;
+    color: var(--muted);
+    font-size: 14.5px;
+  }
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .login-field label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .login-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .login-row label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+  .login-row a {
+    color: var(--text);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .login-card .btn-primary {
+    width: 100%;
+    height: 54px;
+    margin-top: 4px;
+  }
+  .login-demo-note {
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: var(--green-soft);
+    color: var(--green-deep);
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .login-error {
+    display: none;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #FEF2F2;
+    color: #DC2626;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .login-error.show {
+    display: block;
+  }
+
+  .demo-app {
+    min-height: 100vh;
+    grid-template-columns: 280px minmax(0, 1fr);
+    background: var(--off-white);
+    color: var(--text);
+  }
+  .demo-sidebar {
+    min-height: 100vh;
+    background: var(--black);
+    color: var(--white);
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .demo-sidebar .logo {
+    color: var(--white);
+  }
+  .demo-sidebar .logo .mark {
+    background: var(--white);
+  }
+  .demo-sidebar .logo .mark::before {
+    box-shadow: 0 0 0 3px var(--white), 0 0 0 4.5px var(--green);
+  }
+  .demo-event-card {
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 16px;
+  }
+  .demo-event-card .label {
+    color: var(--muted-inv);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .demo-event-card strong {
+    display: block;
+    margin-top: 8px;
+    color: var(--white);
+    line-height: 1.25;
+  }
+  .demo-event-card span {
+    display: block;
+    margin-top: 6px;
+    color: var(--muted-inv);
+    font-size: 12px;
+  }
+  .demo-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .demo-nav button,
+  .demo-side-action {
+    width: 100%;
+    border: 0;
+    background: transparent;
+    color: var(--muted-inv);
+    border-radius: 10px;
+    padding: 11px 12px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .demo-nav button:hover,
+  .demo-side-action:hover {
+    background: rgba(255,255,255,0.08);
+    color: var(--white);
+  }
+  .demo-nav button.active {
+    background: var(--green);
+    color: var(--black);
+  }
+  .demo-nav .icon,
+  .demo-side-action .icon {
+    width: 20px;
+    text-align: center;
+    font-weight: 900;
+  }
+  .demo-sidebar-bottom {
+    margin-top: auto;
+    display: grid;
+    gap: 8px;
+  }
+  .demo-workspace {
+    min-width: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .demo-topbar {
+    height: 76px;
+    flex: 0 0 auto;
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    gap: 20px;
+  }
+  .demo-topbar-title {
+    min-width: 0;
+  }
+  .demo-topbar-title span {
+    display: block;
+    color: var(--dim);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .demo-topbar-title strong {
+    display: block;
+    margin-top: 2px;
+    font-size: 22px;
+    line-height: 1.1;
+  }
+  .demo-topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .demo-user-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--white);
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .demo-user-pill i {
+    width: 24px;
+    height: 24px;
+    border-radius: 99px;
+    background: var(--black);
+    color: var(--green);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-style: normal;
+    font-size: 11px;
+  }
+  .demo-content {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    padding: 28px;
+  }
+  .demo-page {
+    display: none;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+  .demo-page.active {
+    display: block;
+  }
+  .demo-page-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 22px;
+  }
+  .demo-page-head h1 {
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.05;
+    margin: 0;
+  }
+  .demo-page-head p {
+    color: var(--muted);
+    margin: 8px 0 0;
+    max-width: 62ch;
+  }
+  .demo-kpis {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .demo-card,
+  .demo-kpi,
+  .demo-panel {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 0 18px 40px -30px rgba(0,0,0,0.35);
+  }
+  .demo-kpi {
+    padding: 18px;
+  }
+  .demo-kpi span {
+    display: block;
+    color: var(--dim);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .demo-kpi strong {
+    display: block;
+    margin-top: 8px;
+    font-size: 28px;
+    line-height: 1;
+  }
+  .demo-kpi small {
+    display: block;
+    margin-top: 8px;
+    color: var(--green-deep);
+    font-weight: 800;
+  }
+  .demo-grid-2 {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+    gap: 18px;
+  }
+  .demo-panel {
+    padding: 20px;
+  }
+  .demo-panel h3 {
+    font-size: 16px;
+    margin: 0 0 16px;
+  }
+  .demo-bars {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 10px;
+    align-items: end;
+    height: 230px;
+    padding-top: 12px;
+  }
+  .demo-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    color: var(--dim);
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .demo-bar i {
+    width: 100%;
+    min-height: 10px;
+    border-radius: 8px 8px 0 0;
+    background: var(--green);
+    display: block;
+  }
+  .demo-bar:nth-child(even) i {
+    background: #DCDCD8;
+  }
+  .demo-list {
+    display: grid;
+    gap: 10px;
+  }
+  .demo-list-row,
+  .demo-table-row {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #FAFAF8;
+  }
+  .demo-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 99px;
+    background: var(--green);
+  }
+  .demo-list-row strong,
+  .demo-table-row strong {
+    display: block;
+    font-size: 14px;
+  }
+  .demo-list-row span,
+  .demo-table-row span {
+    display: block;
+    color: var(--dim);
+    font-size: 12px;
+    margin-top: 2px;
+  }
+  .demo-tag {
+    border-radius: 999px;
+    padding: 5px 9px;
+    background: var(--green-soft);
+    color: var(--green-deep);
+    font-size: 11px;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  .demo-tag.warn {
+    background: #FEF3C7;
+    color: #B45309;
+  }
+  .demo-tag.info {
+    background: #E0F2FE;
+    color: #0369A1;
+  }
+  .demo-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .demo-card {
+    padding: 20px;
+  }
+  .demo-card-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 28px;
+  }
+  .demo-card h3 {
+    font-size: 18px;
+    line-height: 1.2;
+    margin: 0;
+  }
+  .demo-card p {
+    color: var(--muted);
+    margin: 8px 0 0;
+    font-size: 13.5px;
+  }
+  .demo-progress {
+    height: 8px;
+    background: #E8E8E5;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 14px;
+  }
+  .demo-progress i {
+    display: block;
+    height: 100%;
+    background: var(--green);
+    border-radius: 999px;
+  }
+  .demo-table {
+    display: grid;
+    gap: 8px;
+  }
+  .demo-table-row {
+    grid-template-columns: auto minmax(0, 1.2fr) minmax(120px, 0.6fr) auto;
+  }
+  .demo-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 99px;
+    background: var(--black);
+    color: var(--green);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 900;
+  }
+  .demo-money {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.7fr);
+    gap: 18px;
+  }
+  .demo-budget {
+    background: var(--black);
+    color: var(--white);
+    border-radius: 16px;
+    padding: 26px;
+  }
+  .demo-budget span {
+    color: var(--muted-inv);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .demo-budget strong {
+    display: block;
+    margin-top: 10px;
+    font-size: clamp(34px, 6vw, 56px);
+    line-height: 1;
+  }
+  .demo-budget strong i {
+    color: var(--green);
+    font-style: normal;
+  }
+  .demo-checklist {
+    display: grid;
+    gap: 10px;
+  }
+  .demo-task {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 12px;
+    align-items: center;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--white);
+  }
+  .demo-task input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--green);
+  }
+  .demo-task strong {
+    display: block;
+    font-size: 14px;
+  }
+  .demo-task span {
+    display: block;
+    color: var(--dim);
+    font-size: 12px;
+    margin-top: 2px;
+  }
+  .demo-settings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  @media (max-width: 1000px) {
+    .login-screen {
+      grid-template-columns: 1fr;
+    }
+    .login-visual {
+      min-height: auto;
+      padding: 36px 24px;
+      gap: 48px;
+    }
+    .login-panel {
+      min-height: auto;
+      padding: 34px 24px 48px;
+      flex-direction: column;
+      align-items: center;
+    }
+    .login-back {
+      position: static;
+      margin-bottom: 18px;
+      align-self: flex-end;
+    }
+    .demo-app {
+      grid-template-columns: 1fr;
+    }
+    .demo-sidebar {
+      min-height: auto;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      padding: 16px;
+    }
+    .demo-event-card,
+    .demo-sidebar-bottom {
+      display: none;
+    }
+    .demo-nav {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .demo-workspace {
+      height: auto;
+      min-height: calc(100vh - 176px);
+    }
+    .demo-topbar {
+      height: auto;
+      min-height: 76px;
+      align-items: flex-start;
+      padding: 18px;
+      flex-direction: column;
+    }
+    .demo-content {
+      padding: 18px;
+    }
+    .demo-kpis,
+    .demo-cards,
+    .demo-settings-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .demo-grid-2,
+    .demo-money {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .nav-cta-wrap .btn-outline[data-open-login] {
+      display: inline-flex;
+    }
+    .login-proof,
+    .demo-kpis,
+    .demo-cards,
+    .demo-settings-grid {
+      grid-template-columns: 1fr;
+    }
+    .login-card {
+      padding: 26px;
+    }
+    .demo-nav {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .demo-page-head,
+    .demo-card-top {
+      flex-direction: column;
+    }
+    .demo-table-row {
+      grid-template-columns: auto minmax(0, 1fr);
+    }
+    .demo-table-row .demo-tag,
+    .demo-table-row > span:last-child {
+      grid-column: 2;
+      justify-self: start;
+    }
+    .demo-bars {
+      height: 180px;
+    }
+  }
+
+  @media (max-width: 460px) {
+    .nav-cta-wrap .btn-primary {
+      display: none;
+    }
+    .login-visual {
+      display: none;
+    }
+    .login-screen,
+    .login-panel {
+      min-height: 100vh;
+    }
+    .login-back {
+      align-self: flex-start;
+    }
+    .demo-user-pill {
+      display: none;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .waitlist-form { flex-direction: column; }
+    .waitlist-form .btn { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== MARQUEE ============== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span><span class="ico">●</span><a href="#waitlist">RESERVAR VAGA NO BETA</a></span>
+    <span><span class="ico">▲</span>+240 PROFISSIONAIS DE EVENTOS JÁ NA LISTA</span>
+    <span><span class="ico">●</span>PREÇO DE FUNDADOR — BLOQUEADO PARA SEMPRE</span>
+    <span><span class="ico">▲</span><a href="#features">VEJA COMO O NEXO FUNCIONA</a></span>
+    <span><span class="ico">●</span>VAGAS LIMITADAS PARA O BETA · 2026</span>
+    <!-- duplicate for seamless loop -->
+    <span><span class="ico">●</span><a href="#waitlist">RESERVAR VAGA NO BETA</a></span>
+    <span><span class="ico">▲</span>+240 PROFISSIONAIS DE EVENTOS JÁ NA LISTA</span>
+    <span><span class="ico">●</span>PREÇO DE FUNDADOR — BLOQUEADO PARA SEMPRE</span>
+    <span><span class="ico">▲</span><a href="#features">VEJA COMO O NEXO FUNCIONA</a></span>
+    <span><span class="ico">●</span>VAGAS LIMITADAS PARA O BETA · 2026</span>
+  </div>
+</div>
+
+<!-- ============== NAV ============== -->
+<nav class="site">
+  <div class="container nav-inner">
+    <a href="#top" class="logo">
+      <span class="mark"></span>
+      Nexo
+    </a>
+    <div class="nav-links">
+      <a href="#showcase">Produto <span class="chev">▾</span></a>
+      <a href="#personas">Soluções <span class="chev">▾</span></a>
+      <a href="#features">Funcionalidades</a>
+      <a href="#waitlist">Beta</a>
+    </div>
+    <div class="nav-cta-wrap">
+      <button class="btn btn-outline btn-sm" type="button" data-open-login>Entrar</button>
+      <a href="#waitlist" class="btn btn-primary btn-sm">Reservar vaga</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<section class="hero" id="top">
+  <div class="hero-bg">
+    <image-slot
+      id="hero-bg"
+      shape="rect"
+      placeholder="Imagem de fundo do hero (cena de evento, palco, plateia, equipe em ação)"
+    ></image-slot>
+  </div>
+
+  <div class="hero-inner">
+    <div class="container hero-grid">
+      <!-- Left: Headline -->
+      <div class="reveal">
+        <span class="eyebrow on-dark"><span class="pulse"></span>Beta privado · 2026</span>
+        <h1 class="h-display">
+          O hub que faz<br />
+          <span class="mark">os seus eventos</span><br />
+          acontecerem.
+        </h1>
+        <ul class="hero-bullets">
+          <li><span class="check">✓</span>Financeiro, checklist e inscritos num só painel</li>
+          <li><span class="check">✓</span>Substitui 6+ ferramentas e planilhas</li>
+          <li><span class="check">✓</span>Equipe sincronizada em tempo real</li>
+        </ul>
+
+        <div class="trust-card">
+          <div class="t-head">Confiável e seguro</div>
+          <div class="t-row">
+            <span class="stars">★★★★★</span>
+            <span class="score">4.9</span>
+            <span class="meta">· baseado em testes com 240+ produtores</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Signup card -->
+      <div class="reveal" style="transition-delay: 80ms; width: 100%;">
+        <div class="signup-card">
+          <h2>Reserve sua vaga no beta.<br /><span style="color: var(--green-deep);">É gratuito.</span></h2>
+          <div class="sub">Acesso prioritário antes do lançamento público.</div>
+
+          <!-- HubSpot form embed — formulário real do beta (portal 51566439) -->
+          <div class="hs-form-frame"
+               data-region="na1"
+               data-form-id="5160b379-11ca-4043-a14f-a0f19c468b3c"
+               data-portal-id="51566439"></div>
+          <div class="signup-foot">Já tem convite? <a href="#login" data-open-login>Entrar na demo</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== LOGOS ============== -->
+<section class="social" style="padding: 56px 0;">
+  <div class="container">
+    <div class="lead-sm reveal">Profissionais de eventos das maiores produtoras já testaram</div>
+    <div class="logo-row reveal" style="transition-delay: 60ms;">
+      <span>FESTIVAIS BR</span>
+      <span>SUMMIT.CO</span>
+      <span>EVENTOS+</span>
+      <span>PALCO LIVE</span>
+      <span>ATIVA</span>
+      <span>HUB EVENTS</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============== DOBRA / SHOWCASE ============== -->
+<section class="showcase" id="showcase" style="padding-bottom: 96px;">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="pulse"></span>O produto</span>
+      <h2 class="h-section">Veja o Nexo<br /><span class="grad-green">funcionando.</span></h2>
+      <p class="lead">Três telas, um hub. Todas as informações do seu evento em tempo real.</p>
+    </div>
+
+    <div style="text-align:center;" class="reveal">
+      <div class="show-tabs" role="tablist">
+        <button class="active" data-tab="dashboard">📊 Dashboard</button>
+        <button data-tab="inscritos">👥 Inscritos</button>
+        <button data-tab="financeiro">💰 Financeiro</button>
+      </div>
+    </div>
+
+    <div class="show-stage reveal">
+      <!-- ============= TAB 1: DASHBOARD ============= -->
+      <div class="show-panel active" data-panel="dashboard">
+        <div class="app-window">
+          <div class="app-bar">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <div class="url">app.nexo.events / dashboard</div>
+            <div style="width: 60px;"></div>
+          </div>
+          <div class="app-body">
+            <aside class="app-side">
+              <div class="side-logo"><span class="mk"></span>Nexo</div>
+              <div class="side-link active"><span class="ic">◧</span>Dashboard</div>
+              <div class="side-link"><span class="ic">◷</span>Eventos</div>
+              <div class="side-link"><span class="ic">◉</span>Inscritos</div>
+              <div class="side-link"><span class="ic">$</span>Financeiro</div>
+              <div class="side-link"><span class="ic">✓</span>Checklist</div>
+              <div class="side-section">Equipe</div>
+              <div class="side-link"><span class="ic">◐</span>Membros</div>
+              <div class="side-link"><span class="ic">⚙</span>Configurações</div>
+            </aside>
+            <main class="app-main">
+              <div class="am-head">
+                <div>
+                  <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--dim);font-weight:600;margin-bottom:4px;">Summit de Marketing 2026</div>
+                  <div class="am-title">Visão geral</div>
+                </div>
+                <div class="am-actions">
+                  <button class="am-btn">Exportar</button>
+                  <button class="am-btn primary">+ Novo evento</button>
+                </div>
+              </div>
+
+              <div class="stat-grid">
+                <div class="stat">
+                  <div class="lbl">Inscritos</div>
+                  <div class="val">320</div>
+                  <div class="delta">↑ 18 hoje</div>
+                </div>
+                <div class="stat">
+                  <div class="lbl">Confirmados</div>
+                  <div class="val">247</div>
+                  <div class="delta">77% taxa</div>
+                </div>
+                <div class="stat">
+                  <div class="lbl">Orçamento</div>
+                  <div class="val">82%</div>
+                  <div class="delta">no plano</div>
+                </div>
+                <div class="stat">
+                  <div class="lbl">Tarefas</div>
+                  <div class="val">17/24</div>
+                  <div class="delta neg">3 atrasadas</div>
+                </div>
+              </div>
+
+              <div class="chart-row">
+                <div class="chart-card">
+                  <h4>Inscritos por semana</h4>
+                  <div class="bar-chart">
+                    <div class="col"><div class="b" style="height: 28%;"></div><div class="lbl">S1</div></div>
+                    <div class="col"><div class="b" style="height: 42%;"></div><div class="lbl">S2</div></div>
+                    <div class="col"><div class="b" style="height: 38%;"></div><div class="lbl">S3</div></div>
+                    <div class="col"><div class="b" style="height: 60%;"></div><div class="lbl">S4</div></div>
+                    <div class="col"><div class="b" style="height: 52%;"></div><div class="lbl">S5</div></div>
+                    <div class="col"><div class="b" style="height: 78%;"></div><div class="lbl">S6</div></div>
+                    <div class="col"><div class="b" style="height: 92%;"></div><div class="lbl">S7</div></div>
+                    <div class="col"><div class="b alt" style="height: 65%;"></div><div class="lbl">S8</div></div>
+                  </div>
+                </div>
+                <div class="chart-card">
+                  <h4>Confirmação</h4>
+                  <div class="donut-wrap">
+                    <div class="donut">
+                      <div class="center">
+                        <div class="n">62%</div>
+                        <div class="l">conf.</div>
+                      </div>
+                    </div>
+                    <div class="legend">
+                      <div><i style="background: var(--green);"></i>Confirmados</div>
+                      <div><i style="background: #E8E8E5;"></i>Pendentes</div>
+                      <div style="margin-top: 6px; font-size: 11px; color: var(--dim);">Atualizado agora</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============= TAB 2: INSCRITOS ============= -->
+      <div class="show-panel" data-panel="inscritos">
+        <div class="app-window">
+          <div class="app-bar">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <div class="url">app.nexo.events / inscritos</div>
+            <div style="width: 60px;"></div>
+          </div>
+          <div class="app-body">
+            <aside class="app-side">
+              <div class="side-logo"><span class="mk"></span>Nexo</div>
+              <div class="side-link"><span class="ic">◧</span>Dashboard</div>
+              <div class="side-link"><span class="ic">◷</span>Eventos</div>
+              <div class="side-link active"><span class="ic">◉</span>Inscritos</div>
+              <div class="side-link"><span class="ic">$</span>Financeiro</div>
+              <div class="side-link"><span class="ic">✓</span>Checklist</div>
+              <div class="side-section">Equipe</div>
+              <div class="side-link"><span class="ic">◐</span>Membros</div>
+              <div class="side-link"><span class="ic">⚙</span>Configurações</div>
+            </aside>
+            <main class="app-main">
+              <div class="am-head">
+                <div>
+                  <div class="am-title">Inscritos · 320</div>
+                  <div style="font-size:13px;color:var(--dim);margin-top:4px;">Lista completa de participantes</div>
+                </div>
+                <div class="am-actions">
+                  <button class="am-btn">Exportar CSV</button>
+                  <button class="am-btn primary">+ Adicionar</button>
+                </div>
+              </div>
+
+              <div class="table-search">
+                <input class="search-input" placeholder="🔍 Buscar por nome, email ou empresa..." />
+                <div class="filter-pill active">Todos</div>
+                <div class="filter-pill">Confirmados</div>
+                <div class="filter-pill">Pendentes</div>
+                <div class="filter-pill">Check-in</div>
+              </div>
+
+              <table class="inscritos">
+                <thead>
+                  <tr>
+                    <th>Participante</th>
+                    <th>Empresa</th>
+                    <th>Status</th>
+                    <th>Inscrição</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><div class="name-cell">
+                      <div class="avatar" style="background:#F97316;">MC</div>
+                      <div><div class="nm">Mariana Costa</div><div class="em">mariana@octopus.io</div></div>
+                    </div></td>
+                    <td>Octopus Studio</td>
+                    <td><span class="badge confirmed"><i></i>Confirmado</span></td>
+                    <td>02 mai · 14h32</td>
+                    <td>···</td>
+                  </tr>
+                  <tr>
+                    <td><div class="name-cell">
+                      <div class="avatar" style="background:#0EA5E9;">RP</div>
+                      <div><div class="nm">Rafael Pereira</div><div class="em">rafael@brand.co</div></div>
+                    </div></td>
+                    <td>Brand & Co.</td>
+                    <td><span class="badge checked"><i></i>Check-in</span></td>
+                    <td>30 abr · 09h17</td>
+                    <td>···</td>
+                  </tr>
+                  <tr>
+                    <td><div class="name-cell">
+                      <div class="avatar" style="background:#A855F7;">JS</div>
+                      <div><div class="nm">Júlia Santos</div><div class="em">julia@hubinc.com</div></div>
+                    </div></td>
+                    <td>Hub Inc.</td>
+                    <td><span class="badge pending"><i></i>Pendente</span></td>
+                    <td>05 mai · 11h08</td>
+                    <td>···</td>
+                  </tr>
+                  <tr>
+                    <td><div class="name-cell">
+                      <div class="avatar" style="background:#10B981;">DA</div>
+                      <div><div class="nm">Diego Almeida</div><div class="em">diego@nexus.ai</div></div>
+                    </div></td>
+                    <td>Nexus AI</td>
+                    <td><span class="badge confirmed"><i></i>Confirmado</span></td>
+                    <td>04 mai · 16h44</td>
+                    <td>···</td>
+                  </tr>
+                  <tr>
+                    <td><div class="name-cell">
+                      <div class="avatar" style="background:#F43F5E;">CL</div>
+                      <div><div class="nm">Carolina Lima</div><div class="em">carol@summit.co</div></div>
+                    </div></td>
+                    <td>Summit.co</td>
+                    <td><span class="badge confirmed"><i></i>Confirmado</span></td>
+                    <td>01 mai · 10h22</td>
+                    <td>···</td>
+                  </tr>
+                  <tr>
+                    <td><div class="name-cell">
+                      <div class="avatar" style="background:#EAB308;">PR</div>
+                      <div><div class="nm">Pedro Rocha</div><div class="em">pedro@brava.studio</div></div>
+                    </div></td>
+                    <td>Brava Studio</td>
+                    <td><span class="badge pending"><i></i>Pendente</span></td>
+                    <td>06 mai · 08h55</td>
+                    <td>···</td>
+                  </tr>
+                </tbody>
+              </table>
+            </main>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============= TAB 3: FINANCEIRO ============= -->
+      <div class="show-panel" data-panel="financeiro">
+        <div class="app-window">
+          <div class="app-bar">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <div class="url">app.nexo.events / financeiro</div>
+            <div style="width: 60px;"></div>
+          </div>
+          <div class="app-body">
+            <aside class="app-side">
+              <div class="side-logo"><span class="mk"></span>Nexo</div>
+              <div class="side-link"><span class="ic">◧</span>Dashboard</div>
+              <div class="side-link"><span class="ic">◷</span>Eventos</div>
+              <div class="side-link"><span class="ic">◉</span>Inscritos</div>
+              <div class="side-link active"><span class="ic">$</span>Financeiro</div>
+              <div class="side-link"><span class="ic">✓</span>Checklist</div>
+              <div class="side-section">Equipe</div>
+              <div class="side-link"><span class="ic">◐</span>Membros</div>
+              <div class="side-link"><span class="ic">⚙</span>Configurações</div>
+            </aside>
+            <main class="app-main">
+              <div class="am-head">
+                <div>
+                  <div class="am-title">Financeiro</div>
+                  <div style="font-size:13px;color:var(--dim);margin-top:4px;">Summit de Marketing 2026 · Orçamento R$ 180.000</div>
+                </div>
+                <div class="am-actions">
+                  <button class="am-btn">Relatório</button>
+                  <button class="am-btn primary">+ Lançamento</button>
+                </div>
+              </div>
+
+              <div class="fin-top">
+                <div class="budget-card">
+                  <div class="lbl">Gasto até agora</div>
+                  <div class="big">R$ 147.620<span class="accent" style="font-size: 20px;">,00</span></div>
+                  <div class="sub">82% do orçamento · R$ 32.380 disponível</div>
+                  <div class="budget-bar"><i style="width: 82%;"></i></div>
+                </div>
+                <div class="cat-card">
+                  <h4>Por categoria</h4>
+                  <div class="cat-row">
+                    <span class="nm">Local & Estrutura</span>
+                    <span class="vl">R$ 62.400</span>
+                    <div class="bar"><i style="width: 92%;"></i></div>
+                  </div>
+                  <div class="cat-row">
+                    <span class="nm">Marketing</span>
+                    <span class="vl">R$ 38.200</span>
+                    <div class="bar"><i style="width: 68%;"></i></div>
+                  </div>
+                  <div class="cat-row">
+                    <span class="nm">Catering</span>
+                    <span class="vl">R$ 27.000</span>
+                    <div class="bar"><i style="width: 54%;"></i></div>
+                  </div>
+                  <div class="cat-row">
+                    <span class="nm">Equipe & Cachês</span>
+                    <span class="vl">R$ 20.020</span>
+                    <div class="bar"><i style="width: 44%;"></i></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tx-list">
+                <div class="tx-row">
+                  <div class="tx-icon">🏢</div>
+                  <div>
+                    <div class="ttl">Centro de Convenções WTC</div>
+                    <div class="meta">Local · NF #2241 · 04 mai</div>
+                  </div>
+                  <span class="stat-tag paid">Pago</span>
+                  <div class="amount out">- R$ 42.000,00</div>
+                </div>
+                <div class="tx-row">
+                  <div class="tx-icon">📣</div>
+                  <div>
+                    <div class="ttl">Campanha de mídia paga</div>
+                    <div class="meta">Marketing · NF #2238 · 03 mai</div>
+                  </div>
+                  <span class="stat-tag paid">Pago</span>
+                  <div class="amount out">- R$ 12.450,00</div>
+                </div>
+                <div class="tx-row">
+                  <div class="tx-icon">🍽️</div>
+                  <div>
+                    <div class="ttl">Catering Bistro 320</div>
+                    <div class="meta">Catering · Aguardando NF · 06 mai</div>
+                  </div>
+                  <span class="stat-tag pending">Pendente</span>
+                  <div class="amount out">- R$ 8.900,00</div>
+                </div>
+                <div class="tx-row">
+                  <div class="tx-icon">💸</div>
+                  <div>
+                    <div class="ttl">Patrocínio · Stripe Brasil</div>
+                    <div class="meta">Receita · 28 abr</div>
+                  </div>
+                  <span class="stat-tag paid">Recebido</span>
+                  <div class="amount in">+ R$ 25.000,00</div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PROBLEMA ============== -->
+<section id="problema">
+  <div class="container">
+    <div class="problem-grid">
+      <div class="reveal">
+        <span class="eyebrow">O problema</span>
+        <h2 class="h-section">
+          Você gerencia eventos.<br />
+          Mas <span class="grad-green">quem gerencia o caos?</span>
+        </h2>
+      </div>
+      <div class="reveal" style="transition-delay: 80ms;">
+        <p>
+          Nota fiscal numa pasta. Checklist num doc. Lista de inscritos numa planilha.
+          Custos num grupo de WhatsApp. Para quem trabalha com eventos, essa fragmentação
+          é o maior inimigo da operação.
+        </p>
+        <p style="margin-top: 14px;">
+          Informação espalhada vira retrabalho. Retrabalho vira erro. Erro vira prejuízo.
+        </p>
+      </div>
+    </div>
+
+    <div class="pains">
+      <div class="pain reveal">
+        <div class="ico">⏱️</div>
+        <p>Horas perdidas consolidando informações de múltiplas ferramentas.</p>
+      </div>
+      <div class="pain reveal" style="transition-delay: 60ms;">
+        <div class="ico">⚠️</div>
+        <p>Erros financeiros por falta de rastreabilidade centralizada.</p>
+      </div>
+      <div class="pain reveal" style="transition-delay: 120ms;">
+        <div class="ico">🔌</div>
+        <p>Equipe desalinhada por falta de visibilidade em tempo real.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FEATURES ============== -->
+<section id="features" class="features-section">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Funcionalidades</span>
+      <h2 class="h-section">O hub que a sua<br />operação precisava.</h2>
+      <p class="lead">Tudo que você usa separado, agora conectado num painel único.</p>
+    </div>
+
+    <div class="features">
+      <div class="feature reveal">
+        <div class="ico-wrap">💰</div>
+        <h3>Financeiro centralizado</h3>
+        <p>Lance custos, controle NFs e acompanhe o orçamento de cada evento em tempo real. Sem planilha.</p>
+      </div>
+      <div class="feature reveal" style="transition-delay: 60ms;">
+        <div class="ico-wrap">✅</div>
+        <h3>Checklist com status</h3>
+        <p>Crie e acompanhe todas as tarefas com status atualizado para toda a equipe.</p>
+      </div>
+      <div class="feature reveal" style="transition-delay: 120ms;">
+        <div class="ico-wrap">👥</div>
+        <h3>Gestão de inscritos</h3>
+        <p>Liste, filtre e gerencie participantes com histórico completo e exportação fácil.</p>
+      </div>
+      <div class="feature reveal" style="transition-delay: 180ms;">
+        <div class="ico-wrap">📊</div>
+        <h3>Insights por evento</h3>
+        <p>Dashboards com os números que importam — taxa de confirmação, custo por inscrito, performance.</p>
+      </div>
+      <div class="feature reveal" style="transition-delay: 240ms;">
+        <div class="ico-wrap">🗂️</div>
+        <h3>Hub completo</h3>
+        <p>Tudo conectado em um painel único. Do lançamento ao pós-evento, sem alternar entre apps.</p>
+      </div>
+      <div class="feature reveal" style="transition-delay: 300ms;">
+        <div class="ico-wrap">⚡</div>
+        <h3>Em tempo real</h3>
+        <p>Equipe sempre sincronizada. Qualquer atualização reflete instantaneamente para todos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PARA QUEM É ============== -->
+<section id="personas" class="personas-section">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Para quem é</span>
+      <h2 class="h-section">Para quem vive de eventos.</h2>
+    </div>
+
+    <div class="personas">
+      <div class="persona reveal">
+        <span class="tag">Produtor independente</span>
+        <blockquote>Eu opero sozinho e preciso de controle total sem depender de 10 ferramentas diferentes.</blockquote>
+        <p>Nexo te dá o back-office completo de um evento, sem a complexidade de sistemas corporativos.</p>
+        <ul>
+          <li>Gestão solo eficiente</li>
+          <li>Financeiro organizado</li>
+          <li>Visão completa do evento</li>
+        </ul>
+      </div>
+      <div class="persona reveal" style="transition-delay: 80ms;">
+        <span class="tag">Gestor corporativo</span>
+        <blockquote>Organizo eventos internos e preciso justificar cada centavo para a diretoria.</blockquote>
+        <p>Com Nexo você tem relatórios claros, rastreabilidade financeira e visão centralizada.</p>
+        <ul>
+          <li>Relatórios para stakeholders</li>
+          <li>Rastreabilidade total</li>
+          <li>Múltiplos eventos simultâneos</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== WAITLIST ============== -->
+<section id="waitlist" class="waitlist">
+  <div class="container">
+    <div class="waitlist-inner reveal">
+      <span class="eyebrow on-dark"><span class="pulse"></span>Beta · Vagas limitadas</span>
+      <h2 class="h-section">Seja um dos primeiros a usar o Nexo.</h2>
+      <p class="lead">Estamos construindo o Nexo com quem realmente trabalha com eventos.</p>
+
+      <div class="benefits">
+        <div class="benefit"><span class="ico">🚀</span><p>Acesso ao beta exclusivo antes do lançamento público.</p></div>
+        <div class="benefit"><span class="ico">💎</span><p>Preço de fundador — bloqueado para sempre.</p></div>
+        <div class="benefit"><span class="ico">🎯</span><p>Voz ativa nas próximas funcionalidades.</p></div>
+      </div>
+
+      <!-- HubSpot form embed — mesmo formulário do beta (portal 51566439) -->
+      <div class="hs-form-frame"
+           data-region="na1"
+           data-form-id="5160b379-11ca-4043-a14f-a0f19c468b3c"
+           data-portal-id="51566439"></div>
+      <p class="microcopy">Vagas de beta limitadas · Sem spam · Cancele quando quiser</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="site">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-left">
+        <div class="logo"><span class="mark"></span>Nexo</div>
+        <div class="foot-tagline">O hub dos seus eventos.</div>
+      </div>
+      <div class="foot-links">
+        <a href="#">Privacidade</a>
+        <a href="#">Termos</a>
+        <a href="#">Contato</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Nexo. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+<!-- ============== LOGIN SCREEN ============== -->
+<div id="loginScreen" class="login-screen" aria-hidden="true">
+  <div class="login-visual">
+    <div class="logo"><span class="mark"></span>Nexo</div>
+    <div class="login-copy">
+      <span class="eyebrow on-dark"><span class="pulse"></span>Acesso ao produto</span>
+      <h1>Entre no hub que tira <span>eventos do caos.</span></h1>
+      <p>Uma camada única para acompanhar inscritos, orçamento, tarefas e equipe sem alternar entre planilhas, grupos e ferramentas soltas.</p>
+    </div>
+    <div class="login-proof">
+      <div class="login-proof-card"><strong>320</strong><span>inscritos gerenciados na demo</span></div>
+      <div class="login-proof-card"><strong>82%</strong><span>do orçamento monitorado em tempo real</span></div>
+      <div class="login-proof-card"><strong>18</strong><span>tarefas críticas acompanhadas pela equipe</span></div>
+    </div>
+  </div>
+
+  <div class="login-panel">
+    <button class="login-back" type="button" data-back-landing>Voltar para LP</button>
+    <div class="login-card">
+      <div class="logo"><span class="mark"></span>Nexo</div>
+      <h2>Entrar no Nexo</h2>
+      <p class="sub">Use o acesso demonstrativo abaixo para abrir a estrutura original do app.</p>
+
+      <form id="loginForm" class="login-form">
+        <div class="login-field">
+          <label for="loginEmail">E-mail</label>
+          <input id="loginEmail" class="input" name="email" type="email" autocomplete="email" value="demo@nexo.events" required />
+        </div>
+        <div class="login-field">
+          <label for="loginPassword">Senha</label>
+          <input id="loginPassword" class="input" name="password" type="password" autocomplete="current-password" value="demo2026" required />
+        </div>
+        <div class="login-row">
+          <label><input type="checkbox" checked /> Manter conectado</label>
+          <a href="#waitlist" data-back-landing>Solicitar acesso</a>
+        </div>
+        <div id="loginError" class="login-error">Preencha e-mail e senha para acessar a demo.</div>
+        <button class="btn btn-primary" type="submit">Entrar no produto</button>
+      </form>
+      <div class="login-demo-note">Acesso demonstrativo: qualquer e-mail e senha preenchidos abrem o app.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============== PRODUCT DEMO ============== -->
+<div id="productApp" class="demo-app" aria-hidden="true">
+  <aside class="demo-sidebar">
+    <div class="logo"><span class="mark"></span>Nexo</div>
+
+    <div class="demo-event-card">
+      <div class="label">Evento ativo</div>
+      <strong>Summit de Marketing 2026</strong>
+      <span>São Paulo · 18 a 20 jun · 320 inscritos</span>
+    </div>
+
+    <nav class="demo-nav" aria-label="Navegação da demo">
+      <button type="button" class="active" data-demo-route="dashboard"><span class="icon">▦</span>Dashboard</button>
+      <button type="button" data-demo-route="eventos"><span class="icon">□</span>Eventos</button>
+      <button type="button" data-demo-route="inscritos"><span class="icon">◎</span>Inscritos</button>
+      <button type="button" data-demo-route="financeiro"><span class="icon">$</span>Financeiro</button>
+      <button type="button" data-demo-route="checklist"><span class="icon">✓</span>Checklist</button>
+      <button type="button" data-demo-route="membros"><span class="icon">●</span>Membros</button>
+      <button type="button" data-demo-route="config"><span class="icon">⚙</span>Configurações</button>
+    </nav>
+
+    <div class="demo-sidebar-bottom">
+      <button class="demo-side-action" type="button" data-back-landing><span class="icon">←</span>Voltar para LP</button>
+      <button class="demo-side-action" type="button" data-demo-logout><span class="icon">↵</span>Sair</button>
+    </div>
+  </aside>
+
+  <div class="demo-workspace">
+    <header class="demo-topbar">
+      <div class="demo-topbar-title">
+        <span>Nexo App</span>
+        <strong id="demoCrumb">Dashboard</strong>
+      </div>
+      <div class="demo-topbar-actions">
+        <button class="btn btn-outline btn-sm" type="button" data-back-landing>Ver LP</button>
+        <button class="btn btn-primary btn-sm" type="button" data-demo-route="eventos">Novo evento</button>
+        <div class="demo-user-pill"><i>GM</i> Guilherme</div>
+      </div>
+    </header>
+
+    <main class="demo-content">
+      <div class="demo-page active" data-demo-page="dashboard">
+        <div class="demo-page-head">
+          <div>
+            <h1>Operação em tempo real.</h1>
+            <p>Visão executiva do evento, com inscrições, receita, orçamento e tarefas críticas no mesmo painel.</p>
+          </div>
+          <button class="btn btn-primary btn-sm" type="button" data-demo-route="financeiro">Ver financeiro</button>
+        </div>
+
+        <div class="demo-kpis">
+          <div class="demo-kpi"><span>Inscritos</span><strong>320</strong><small>+24 hoje</small></div>
+          <div class="demo-kpi"><span>Receita</span><strong>R$ 186k</strong><small>+12%</small></div>
+          <div class="demo-kpi"><span>Check-in previsto</span><strong>74%</strong><small>alta confiança</small></div>
+          <div class="demo-kpi"><span>Tarefas abertas</span><strong>18</strong><small>4 críticas</small></div>
+        </div>
+
+        <div class="demo-grid-2">
+          <div class="demo-panel">
+            <h3>Inscrições por semana</h3>
+            <div class="demo-bars">
+              <div class="demo-bar"><i style="height: 44%;"></i><span>S1</span></div>
+              <div class="demo-bar"><i style="height: 36%;"></i><span>S2</span></div>
+              <div class="demo-bar"><i style="height: 58%;"></i><span>S3</span></div>
+              <div class="demo-bar"><i style="height: 72%;"></i><span>S4</span></div>
+              <div class="demo-bar"><i style="height: 64%;"></i><span>S5</span></div>
+              <div class="demo-bar"><i style="height: 88%;"></i><span>S6</span></div>
+              <div class="demo-bar"><i style="height: 76%;"></i><span>S7</span></div>
+              <div class="demo-bar"><i style="height: 92%;"></i><span>S8</span></div>
+            </div>
+          </div>
+          <div class="demo-panel">
+            <h3>Alertas da operação</h3>
+            <div class="demo-list">
+              <div class="demo-list-row"><i class="demo-dot"></i><div><strong>Catering pendente de NF</strong><span>Fornecedor Bistro 320</span></div><span class="demo-tag warn">Hoje</span></div>
+              <div class="demo-list-row"><i class="demo-dot"></i><div><strong>Credenciamento aprovado</strong><span>Equipe de recepção confirmada</span></div><span class="demo-tag">Ok</span></div>
+              <div class="demo-list-row"><i class="demo-dot"></i><div><strong>Patrocínio recebido</strong><span>Stripe Brasil · R$ 25.000</span></div><span class="demo-tag info">Novo</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-page" data-demo-page="eventos">
+        <div class="demo-page-head">
+          <div>
+            <h1>Eventos conectados.</h1>
+            <p>Centralize múltiplos eventos e acompanhe status, orçamento, equipe e próximos marcos.</p>
+          </div>
+          <button class="btn btn-primary btn-sm" type="button">Criar evento</button>
+        </div>
+        <div class="demo-cards">
+          <div class="demo-card">
+            <div class="demo-card-top"><div><h3>Summit de Marketing 2026</h3><p>18 a 20 jun · São Paulo</p></div><span class="demo-tag">Ativo</span></div>
+            <strong>320 inscritos</strong>
+            <div class="demo-progress"><i style="width: 82%;"></i></div>
+          </div>
+          <div class="demo-card">
+            <div class="demo-card-top"><div><h3>Brand Experience Day</h3><p>04 ago · Rio de Janeiro</p></div><span class="demo-tag warn">Planejamento</span></div>
+            <strong>146 inscritos</strong>
+            <div class="demo-progress"><i style="width: 46%;"></i></div>
+          </div>
+          <div class="demo-card">
+            <div class="demo-card-top"><div><h3>Meetup Founders</h3><p>21 set · Belo Horizonte</p></div><span class="demo-tag info">Rascunho</span></div>
+            <strong>42 inscritos</strong>
+            <div class="demo-progress"><i style="width: 18%;"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-page" data-demo-page="inscritos">
+        <div class="demo-page-head">
+          <div>
+            <h1>Inscritos sem planilha.</h1>
+            <p>Filtre participantes, acompanhe status de pagamento, confirme check-in e exporte listas em segundos.</p>
+          </div>
+          <button class="btn btn-primary btn-sm" type="button">Exportar CSV</button>
+        </div>
+        <div class="demo-table">
+          <div class="demo-table-row"><div class="demo-avatar">MC</div><div><strong>Mariana Costa</strong><span>mariana@octopus.io</span></div><span>Octopus Studio</span><span class="demo-tag">Confirmado</span></div>
+          <div class="demo-table-row"><div class="demo-avatar">RP</div><div><strong>Rafael Pereira</strong><span>rafael@brand.co</span></div><span>Brand & Co.</span><span class="demo-tag info">Check-in</span></div>
+          <div class="demo-table-row"><div class="demo-avatar">JS</div><div><strong>Júlia Santos</strong><span>julia@hubinc.com</span></div><span>Hub Inc.</span><span class="demo-tag warn">Pendente</span></div>
+          <div class="demo-table-row"><div class="demo-avatar">DA</div><div><strong>Diego Almeida</strong><span>diego@nexus.ai</span></div><span>Nexus AI</span><span class="demo-tag">Confirmado</span></div>
+          <div class="demo-table-row"><div class="demo-avatar">CL</div><div><strong>Carolina Lima</strong><span>carol@summit.co</span></div><span>Summit.co</span><span class="demo-tag">Confirmado</span></div>
+        </div>
+      </div>
+
+      <div class="demo-page" data-demo-page="financeiro">
+        <div class="demo-page-head">
+          <div>
+            <h1>Financeiro rastreável.</h1>
+            <p>Orçamento, lançamentos, notas fiscais e receitas do evento em uma única trilha de controle.</p>
+          </div>
+          <button class="btn btn-primary btn-sm" type="button">Novo lançamento</button>
+        </div>
+        <div class="demo-money">
+          <div class="demo-budget">
+            <span>Gasto até agora</span>
+            <strong>R$ 147.620<i>,00</i></strong>
+            <p>82% do orçamento · R$ 32.380 disponível</p>
+            <div class="demo-progress"><i style="width: 82%;"></i></div>
+          </div>
+          <div class="demo-panel">
+            <h3>Por categoria</h3>
+            <div class="demo-list">
+              <div class="demo-list-row"><i class="demo-dot"></i><div><strong>Local & estrutura</strong><span>R$ 62.400</span></div><span class="demo-tag">92%</span></div>
+              <div class="demo-list-row"><i class="demo-dot"></i><div><strong>Marketing</strong><span>R$ 38.200</span></div><span class="demo-tag">68%</span></div>
+              <div class="demo-list-row"><i class="demo-dot"></i><div><strong>Catering</strong><span>R$ 27.000</span></div><span class="demo-tag warn">NF</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-page" data-demo-page="checklist">
+        <div class="demo-page-head">
+          <div>
+            <h1>Checklist vivo.</h1>
+            <p>Todo responsável sabe o que fazer, quando vence e o que já foi concluído.</p>
+          </div>
+          <button class="btn btn-primary btn-sm" type="button">Adicionar tarefa</button>
+        </div>
+        <div class="demo-checklist">
+          <label class="demo-task"><input type="checkbox" checked /><div><strong>Fechar grade de palestrantes</strong><span>Responsável: Carol · concluído</span></div><span class="demo-tag">Ok</span></label>
+          <label class="demo-task"><input type="checkbox" checked /><div><strong>Enviar layout final para fornecedores</strong><span>Responsável: Rafael · concluído</span></div><span class="demo-tag">Ok</span></label>
+          <label class="demo-task"><input type="checkbox" /><div><strong>Validar NF do catering</strong><span>Responsável: Diego · vence hoje</span></div><span class="demo-tag warn">Crítico</span></label>
+          <label class="demo-task"><input type="checkbox" /><div><strong>Confirmar equipe de credenciamento</strong><span>Responsável: Mariana · amanhã</span></div><span class="demo-tag info">Em andamento</span></label>
+        </div>
+      </div>
+
+      <div class="demo-page" data-demo-page="membros">
+        <div class="demo-page-head">
+          <div>
+            <h1>Equipe alinhada.</h1>
+            <p>Distribua papéis, acompanhe responsabilidades e reduza ruído operacional.</p>
+          </div>
+          <button class="btn btn-primary btn-sm" type="button">Convidar membro</button>
+        </div>
+        <div class="demo-cards">
+          <div class="demo-card"><div class="demo-avatar">GM</div><h3>Guilherme Moraes</h3><p>Owner · acesso total</p><span class="demo-tag">Online</span></div>
+          <div class="demo-card"><div class="demo-avatar">MC</div><h3>Mariana Costa</h3><p>Operação · checklist e inscritos</p><span class="demo-tag info">Ativa</span></div>
+          <div class="demo-card"><div class="demo-avatar">DA</div><h3>Diego Almeida</h3><p>Financeiro · orçamento e NFs</p><span class="demo-tag warn">Revisão</span></div>
+        </div>
+      </div>
+
+      <div class="demo-page" data-demo-page="config">
+        <div class="demo-page-head">
+          <div>
+            <h1>Configurações do hub.</h1>
+            <p>Controle dados do evento, permissões, integrações e preferências da operação.</p>
+          </div>
+          <button class="btn btn-primary btn-sm" type="button">Salvar alterações</button>
+        </div>
+        <div class="demo-settings-grid">
+          <div class="demo-panel"><h3>Dados do evento</h3><input class="input" value="Summit de Marketing 2026" /><br /><br /><input class="input" value="São Paulo · WTC Events Center" /></div>
+          <div class="demo-panel"><h3>Integrações</h3><div class="demo-list"><div class="demo-list-row"><i class="demo-dot"></i><div><strong>HubSpot</strong><span>Formulário do beta conectado</span></div><span class="demo-tag">Ativo</span></div><div class="demo-list-row"><i class="demo-dot"></i><div><strong>Pagamentos</strong><span>Stripe em configuração</span></div><span class="demo-tag warn">Pendente</span></div></div></div>
+          <div class="demo-panel"><h3>Permissões</h3><p>Owners podem editar financeiro, inscritos, equipe e configurações. Operação pode atualizar checklist e check-in.</p></div>
+          <div class="demo-panel"><h3>Notificações</h3><p>Alertas de vencimento, orçamento e tarefas críticas habilitados para o evento ativo.</p></div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ============== ORIGINAL PRODUCT APP ============== -->
+<div id="originalProductApp" class="original-app-shell" aria-hidden="true">
+  <div class="original-app-fallback">
+    O app original foi carregado a partir de UX/Nexo App.html. Se a tela ficar em branco, crie os arquivos UX/app/app.css, UX/app/components.jsx, UX/app/views-main.jsx e UX/app/views-extra.jsx.
+  </div>
+  <iframe
+    id="originalAppFrame"
+    class="original-app-frame"
+    title="Nexo App"
+    src="about:blank"
+  ></iframe>
+</div>
+
+<script>
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  // Showcase tabs
+  const tabs = document.querySelectorAll('.show-tabs button');
+  const panels = document.querySelectorAll('.show-panel');
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const target = tab.getAttribute('data-tab');
+      tabs.forEach(t => t.classList.toggle('active', t === tab));
+      panels.forEach(p => p.classList.toggle('active', p.getAttribute('data-panel') === target));
+    });
+  });
+
+  // LP -> Login -> Demo, tudo no mesmo HTML.
+  const loginScreen = document.getElementById('loginScreen');
+  const productApp = document.getElementById('originalProductApp');
+  const originalAppFrame = document.getElementById('originalAppFrame');
+  const loginForm = document.getElementById('loginForm');
+  const loginError = document.getElementById('loginError');
+  const demoCrumb = document.getElementById('demoCrumb');
+  const demoLabels = {
+    dashboard: 'Dashboard',
+    eventos: 'Eventos',
+    inscritos: 'Inscritos',
+    financeiro: 'Financeiro',
+    checklist: 'Checklist',
+    membros: 'Membros',
+    config: 'Configurações',
+  };
+
+  function setMode(mode) {
+    document.body.classList.toggle('mode-login', mode === 'login');
+    document.body.classList.toggle('mode-app', mode === 'app');
+    loginScreen?.setAttribute('aria-hidden', mode === 'login' ? 'false' : 'true');
+    productApp?.setAttribute('aria-hidden', mode === 'app' ? 'false' : 'true');
+    window.scrollTo({ top: 0, behavior: 'instant' in document.documentElement.style ? 'instant' : 'auto' });
+  }
+
+  function openLogin() {
+    setMode('login');
+    history.replaceState(null, '', '#login');
+    setTimeout(() => document.getElementById('loginEmail')?.focus(), 40);
+  }
+
+  function openLanding(hash = '#top') {
+    setMode('landing');
+    history.replaceState(null, '', hash);
+    requestAnimationFrame(() => {
+      const target = document.querySelector(hash);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  function setDemoRoute(route = 'dashboard') {
+    if (!demoLabels[route]) route = 'dashboard';
+    document.querySelectorAll('[data-demo-route]').forEach((btn) => {
+      btn.classList.toggle('active', btn.getAttribute('data-demo-route') === route);
+    });
+    document.querySelectorAll('[data-demo-page]').forEach((page) => {
+      page.classList.toggle('active', page.getAttribute('data-demo-page') === route);
+    });
+    if (demoCrumb) demoCrumb.textContent = demoLabels[route];
+    history.replaceState(null, '', '#app/' + route);
+    productApp?.querySelector('.demo-content')?.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function openApp(route = 'dashboard') {
+    sessionStorage.setItem('nexo_demo_auth', 'true');
+    setMode('app');
+    const appUrl = new URL('UX/Nexo App.html', window.location.href);
+    appUrl.hash = route;
+    if (originalAppFrame && originalAppFrame.getAttribute('src') !== appUrl.href) {
+      originalAppFrame.setAttribute('src', appUrl.href);
+    }
+    history.replaceState(null, '', '#app/' + route);
+  }
+
+  document.querySelectorAll('[data-open-login]').forEach((el) => {
+    el.addEventListener('click', (event) => {
+      event.preventDefault();
+      openLogin();
+    });
+  });
+
+  document.querySelectorAll('[data-back-landing]').forEach((el) => {
+    el.addEventListener('click', (event) => {
+      event.preventDefault();
+      const href = el.getAttribute('href');
+      openLanding(href && href.startsWith('#') ? href : '#top');
+    });
+  });
+
+  loginForm?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const data = new FormData(loginForm);
+    const email = String(data.get('email') || '').trim();
+    const password = String(data.get('password') || '').trim();
+    if (!email || !password) {
+      loginError?.classList.add('show');
+      return;
+    }
+    loginError?.classList.remove('show');
+    openApp('dashboard');
+  });
+
+  document.querySelectorAll('[data-demo-route]').forEach((el) => {
+    el.addEventListener('click', (event) => {
+      event.preventDefault();
+      openApp(el.getAttribute('data-demo-route'));
+    });
+  });
+
+  document.querySelectorAll('[data-demo-logout]').forEach((el) => {
+    el.addEventListener('click', () => {
+      sessionStorage.removeItem('nexo_demo_auth');
+      openLogin();
+    });
+  });
+
+  const initialHash = location.hash.replace('#', '');
+  if (initialHash === 'login') {
+    setMode('login');
+  } else if (initialHash.startsWith('app')) {
+    const route = initialHash.split('/')[1] || 'dashboard';
+    openApp(route);
+  }
+
+  // Os formulários agora são embeds reais do HubSpot (portal 51566439),
+  // renderizados pelo script js.hsforms.net carregado no <head>.
+  // O envio e a captura do lead são feitos nativamente pelo HubSpot.
+</script>
+
+</body>
+</html>
