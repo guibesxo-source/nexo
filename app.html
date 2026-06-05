@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Nexo · App</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="app/app.css?v=2" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="app/components.jsx"></script>
+<script type="text/babel" src="app/views-main.jsx"></script>
+<script type="text/babel" src="app/views-extra.jsx"></script>
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+const CRUMBS = {
+  dashboard: 'Dashboard', eventos: 'Eventos', inscritos: 'Inscritos',
+  financeiro: 'Financeiro', checklist: 'Checklist', membros: 'Membros', config: 'Configurações',
+};
+const VIEWS = {
+  dashboard: Dashboard, eventos: Eventos, inscritos: Inscritos,
+  financeiro: Financeiro, checklist: Checklist, membros: Membros, config: Config,
+};
+
+function App() {
+  const [route, setRoute] = useState(() => {
+    const stored = localStorage.getItem('nexo_route');
+    const hash = location.hash.replace('#', '');
+    return VIEWS[hash] ? hash : (VIEWS[stored] ? stored : 'dashboard');
+  });
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const go = (id) => {
+    setRoute(id);
+    setMenuOpen(false);
+    localStorage.setItem('nexo_route', id);
+    history.replaceState(null, '', '#' + id);
+    document.querySelector('.content')?.scrollTo({ top: 0 });
+  };
+
+  const View = VIEWS[route] || Dashboard;
+
+  return (
+    <ToastHost>
+      <div className="app">
+        {menuOpen && <div className="scrim" onClick={() => setMenuOpen(false)}></div>}
+        <Sidebar active={route} onNav={go} open={menuOpen} eventName="Summit de Marketing 2026" />
+        <div className="main">
+          <Topbar crumb={CRUMBS[route]} onMenu={() => setMenuOpen(o => !o)} />
+          <div className="content">
+            <div className="content-inner">
+              <View go={go} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </ToastHost>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
