@@ -916,6 +916,88 @@
   }
   .feature p { color: var(--muted); font-size: 14.5px; line-height: 1.6; margin: 0; }
 
+  /* ---- Comparação: Sem Nexo (bagunça) x Com Nexo (organizado) ---- */
+  .compare-section { background: var(--off-white); }
+  .compare-section .sec-head { margin-bottom: 28px; }
+
+  .compare-toggle-wrap { text-align: center; margin-bottom: 44px; }
+  .compare-toggle {
+    display: inline-flex;
+    gap: 4px;
+    padding: 5px;
+    border-radius: 999px;
+    background: var(--white);
+    border: 1px solid var(--line);
+  }
+  .ct-btn {
+    border: 0; background: transparent;
+    font: inherit; font-weight: 600; font-size: 15px;
+    color: var(--muted);
+    padding: 11px 28px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .ct-btn:hover { color: var(--black); }
+  .ct-btn.active { color: var(--black); background: var(--off-white); box-shadow: 0 2px 8px -3px rgba(0,0,0,0.18); }
+  .ct-btn[data-state="on"].active { color: #00310f; background: var(--green); box-shadow: 0 4px 14px -4px var(--green-glow); }
+
+  .compare-stage {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  @media (max-width: 860px) { .compare-stage { grid-template-columns: repeat(2, 1fr); } }
+
+  .cube {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 132px;
+    padding: 22px 20px;
+    border-radius: 16px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    will-change: transform;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                border-color 0.4s ease, background 0.4s ease,
+                box-shadow 0.4s ease, color 0.4s ease;
+  }
+  .cube-ico { font-size: 24px; line-height: 1; }
+  .cube-lbl { font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
+
+  /* estado SEM NEXO: cards tortos, deslocados e em alerta */
+  .compare-stage.messy .cube {
+    transform: translate(var(--mx, 0), var(--my, 0)) rotate(var(--mr, 0));
+    border-color: rgba(220, 38, 38, 0.38);
+    background: #fff5f4;
+    box-shadow: 0 10px 26px -16px rgba(220, 38, 38, 0.5);
+  }
+  .compare-stage.messy .cube .cube-lbl { color: #c0341d; }
+  .compare-stage.messy .cube .cube-lbl.on { display: none; }
+
+  /* estado COM NEXO: cards alinhados e em verde da marca */
+  .compare-stage:not(.messy) .cube {
+    transform: none;
+    border-color: rgba(0, 228, 124, 0.5);
+    background: var(--green-soft);
+    box-shadow: 0 12px 32px -18px var(--green-glow);
+  }
+  .compare-stage:not(.messy) .cube .cube-lbl { color: #005a2c; }
+  .compare-stage:not(.messy) .cube .cube-lbl.off { display: none; }
+
+  @media (max-width: 860px) {
+    .compare-stage.messy .cube {
+      transform: translate(calc(var(--mx, 0) * 0.5), calc(var(--my, 0) * 0.5)) rotate(var(--mr, 0));
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cube { transition: border-color 0.3s ease, background 0.3s ease, color 0.3s ease; }
+  }
+
   /* ============================================ */
   /* PERSONAS                                       */
   /* ============================================ */
@@ -1573,6 +1655,67 @@
   </div>
 </section>
 
+<!-- ============== COMPARAÇÃO (Sem Nexo / Com Nexo) ============== -->
+<section id="comparacao" class="compare-section">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Antes e depois</span>
+      <h2 class="h-section">A mesma operação, <span class="grad-green">com e sem o Nexo.</span></h2>
+      <p class="lead">Clique no botão e veja o caos virar ordem.</p>
+    </div>
+
+    <div class="compare-toggle-wrap reveal">
+      <div class="compare-toggle" role="group" aria-label="Comparar com e sem Nexo">
+        <button type="button" class="ct-btn active" data-state="off" aria-pressed="true">Sem Nexo</button>
+        <button type="button" class="ct-btn" data-state="on" aria-pressed="false">Com Nexo</button>
+      </div>
+    </div>
+
+    <div class="compare-stage messy reveal" id="compareStage">
+      <div class="cube" style="--mx:-28px; --my:14px; --mr:-8deg;">
+        <span class="cube-ico">🧩</span>
+        <span class="cube-lbl off">4 sistemas</span>
+        <span class="cube-lbl on">1 hub só</span>
+      </div>
+      <div class="cube" style="--mx:24px; --my:-18px; --mr:6deg;">
+        <span class="cube-ico">🔗</span>
+        <span class="cube-lbl off">Dados perdidos</span>
+        <span class="cube-lbl on">Tudo salvo</span>
+      </div>
+      <div class="cube" style="--mx:-16px; --my:-24px; --mr:5deg;">
+        <span class="cube-ico">💸</span>
+        <span class="cube-lbl off">Custo surpresa</span>
+        <span class="cube-lbl on">Custo claro</span>
+      </div>
+      <div class="cube" style="--mx:30px; --my:20px; --mr:-6deg;">
+        <span class="cube-ico">🌫️</span>
+        <span class="cube-lbl off">Decisão no escuro</span>
+        <span class="cube-lbl on">Decisão com dados</span>
+      </div>
+      <div class="cube" style="--mx:-30px; --my:-10px; --mr:9deg;">
+        <span class="cube-ico">📝</span>
+        <span class="cube-lbl off">Relatório manual</span>
+        <span class="cube-lbl on">Relatório automático</span>
+      </div>
+      <div class="cube" style="--mx:18px; --my:26px; --mr:-9deg;">
+        <span class="cube-ico">🕳️</span>
+        <span class="cube-lbl off">Sem histórico</span>
+        <span class="cube-lbl on">Histórico completo</span>
+      </div>
+      <div class="cube" style="--mx:-12px; --my:22px; --mr:7deg;">
+        <span class="cube-ico">📋</span>
+        <span class="cube-lbl off">Planilha solta</span>
+        <span class="cube-lbl on">Tudo conectado</span>
+      </div>
+      <div class="cube" style="--mx:26px; --my:-8px; --mr:-5deg;">
+        <span class="cube-ico">🚚</span>
+        <span class="cube-lbl off">Equipe perdida</span>
+        <span class="cube-lbl on">Equipe alinhada</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============== FEATURES ============== -->
 <section id="features" class="features-section">
   <div class="container">
@@ -1703,6 +1846,24 @@
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  // Comparação Sem Nexo / Com Nexo (toggle)
+  (function () {
+    const stage = document.getElementById('compareStage');
+    const btns = document.querySelectorAll('.ct-btn');
+    if (!stage || !btns.length) return;
+    btns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const on = btn.dataset.state === 'on';
+        stage.classList.toggle('messy', !on); // sem messy = organizado (Com Nexo)
+        btns.forEach((b) => {
+          const active = b === btn;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+      });
+    });
+  })();
 
   // Showcase tabs
   const tabs = document.querySelectorAll('.show-tabs button');
