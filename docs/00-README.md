@@ -61,6 +61,7 @@ com relatório de resultado (taxa de confirmação, custo por inscrito, saldo).
 | Artefato | Local |
 |----------|-------|
 | Landing Page v2 (canônica) | `IA\projetos\Nexo\index.html` |
-| Notas no Vault (Obsidian) | `Obsidian\Vault 01\crescimento\projetos\NEXO\` |
+| Protótipo publicado | GitHub Pages: `https://guibesxo-source.github.io/nexo/` · repo `guibesxo-source/nexo` |
+| Workspace no Vault (Obsidian) | `Obsidian\Vault 01\Nexo\` — espaço dedicado do produto (estrutura 00–09 + 99) |
 | Notas técnicas (identidade/LP/HubSpot) | `Obsidian\Vault 01\02 - Documentacao Tecnica\Nexo\` |
 | Captação de leads | HubSpot portal `51566439` (conta pessoal), form `5160b379-11ca-4043-a14f-a0f19c468b3c` |

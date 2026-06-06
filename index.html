@@ -1986,8 +1986,8 @@
 
   // === Captação real → HubSpot (Forms Submission API) ===
   // portalId e formGuid NÃO são segredos (forms embedados expõem os mesmos).
-  const HUBSPOT_PORTAL_ID = '51566439';          // teu hub — confira em Configurações → Conta e cobrança
-  const HUBSPOT_FORM_GUID = 'COLE_O_GUID_AQUI';  // HubSpot → Marketing → Formulários → criar form → pega o GUID
+  const HUBSPOT_PORTAL_ID = '51566439';                                  // conta pessoal (Nexo)
+  const HUBSPOT_FORM_GUID = '5160b379-11ca-4043-a14f-a0f19c468b3c';      // form "Beta NEXO" no HubSpot pessoal
 
   async function sendToHubSpot(form) {
     const val = (sel) => (form.querySelector(sel)?.value || '').trim();
