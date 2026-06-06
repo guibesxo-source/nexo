@@ -920,7 +920,7 @@
   .compare-section { background: var(--off-white); }
   .compare-section .sec-head { margin-bottom: 28px; }
 
-  .compare-toggle-wrap { text-align: center; margin-bottom: 44px; }
+  .compare-toggle-wrap { text-align: center; margin-top: 40px; }
   .compare-toggle {
     display: inline-flex;
     gap: 4px;
@@ -945,7 +945,7 @@
   .compare-stage {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    gap: 8px;
     max-width: 920px;
     margin: 0 auto;
   }
@@ -975,13 +975,32 @@
     border-color: rgba(220, 38, 38, 0.38);
     background: #fff5f4;
     box-shadow: 0 10px 26px -16px rgba(220, 38, 38, 0.5);
+    animation: tremor 0.4s infinite ease-in-out;
   }
   .compare-stage.messy .cube .cube-lbl { color: #c0341d; }
   .compare-stage.messy .cube .cube-lbl.on { display: none; }
 
+  /* tremor dessincronizado por card (cada um treme num ritmo) */
+  .compare-stage.messy .cube:nth-child(2) { animation-duration: 0.33s; animation-delay: -0.12s; z-index: 3; }
+  .compare-stage.messy .cube:nth-child(3) { animation-duration: 0.46s; animation-delay: -0.05s; z-index: 2; }
+  .compare-stage.messy .cube:nth-child(4) { animation-duration: 0.36s; animation-delay: -0.18s; z-index: 4; }
+  .compare-stage.messy .cube:nth-child(5) { animation-duration: 0.42s; animation-delay: -0.09s; z-index: 2; }
+  .compare-stage.messy .cube:nth-child(6) { animation-duration: 0.30s; animation-delay: -0.15s; z-index: 5; }
+  .compare-stage.messy .cube:nth-child(7) { animation-duration: 0.48s; animation-delay: -0.03s; z-index: 3; }
+  .compare-stage.messy .cube:nth-child(8) { animation-duration: 0.35s; animation-delay: -0.20s; z-index: 4; }
+
+  @keyframes tremor {
+    0%, 100% { transform: translate(var(--mx, 0), var(--my, 0)) rotate(var(--mr, 0)); }
+    20% { transform: translate(calc(var(--mx, 0) + 2px), calc(var(--my, 0) - 2px)) rotate(calc(var(--mr, 0) + 1.5deg)); }
+    40% { transform: translate(calc(var(--mx, 0) - 2px), calc(var(--my, 0) + 1px)) rotate(calc(var(--mr, 0) - 1.5deg)); }
+    60% { transform: translate(calc(var(--mx, 0) + 1px), calc(var(--my, 0) + 2px)) rotate(calc(var(--mr, 0) + 1deg)); }
+    80% { transform: translate(calc(var(--mx, 0) - 1px), calc(var(--my, 0) - 1px)) rotate(calc(var(--mr, 0) - 1deg)); }
+  }
+
   /* estado COM NEXO: cards alinhados e em verde da marca */
   .compare-stage:not(.messy) .cube {
     transform: none;
+    animation: none;
     border-color: rgba(0, 228, 124, 0.5);
     background: var(--green-soft);
     box-shadow: 0 12px 32px -18px var(--green-glow);
@@ -996,6 +1015,7 @@
   }
   @media (prefers-reduced-motion: reduce) {
     .cube { transition: border-color 0.3s ease, background 0.3s ease, color 0.3s ease; }
+    .compare-stage.messy .cube { animation: none; }
   }
 
   /* ============================================ */
@@ -1664,13 +1684,6 @@
       <p class="lead">Clique no botão e veja o caos virar ordem.</p>
     </div>
 
-    <div class="compare-toggle-wrap reveal">
-      <div class="compare-toggle" role="group" aria-label="Comparar com e sem Nexo">
-        <button type="button" class="ct-btn active" data-state="off" aria-pressed="true">Sem Nexo</button>
-        <button type="button" class="ct-btn" data-state="on" aria-pressed="false">Com Nexo</button>
-      </div>
-    </div>
-
     <div class="compare-stage messy reveal" id="compareStage">
       <div class="cube" style="--mx:-28px; --my:14px; --mr:-8deg;">
         <span class="cube-ico">🧩</span>
@@ -1711,6 +1724,13 @@
         <span class="cube-ico">🚚</span>
         <span class="cube-lbl off">Equipe perdida</span>
         <span class="cube-lbl on">Equipe alinhada</span>
+      </div>
+    </div>
+
+    <div class="compare-toggle-wrap reveal">
+      <div class="compare-toggle" role="group" aria-label="Comparar com e sem Nexo">
+        <button type="button" class="ct-btn active" data-state="off" aria-pressed="true">Sem Nexo</button>
+        <button type="button" class="ct-btn" data-state="on" aria-pressed="false">Com Nexo</button>
       </div>
     </div>
   </div>
