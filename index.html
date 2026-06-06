@@ -951,27 +951,36 @@
   }
   @media (max-width: 860px) { .compare-stage { grid-template-columns: repeat(2, 1fr); } }
 
+  /* SLOT = posição: transição suave entre bagunça e grade (nos dois sentidos) */
+  .cube-slot {
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+  .compare-stage.messy .cube-slot {
+    transform: translate(var(--mx, 0), var(--my, 0)) rotate(var(--mr, 0));
+  }
+
+  /* CARD = visual + tremor (independente da posição) */
   .cube {
     position: relative;
     display: flex;
     flex-direction: column;
     gap: 12px;
     min-height: 132px;
+    height: 100%;
+    box-sizing: border-box;
     padding: 22px 20px;
     border-radius: 16px;
     background: var(--white);
     border: 1px solid var(--line);
-    will-change: transform;
-    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-                border-color 0.4s ease, background 0.4s ease,
-                box-shadow 0.4s ease, color 0.4s ease;
+    transition: border-color 0.5s ease, background 0.5s ease,
+                box-shadow 0.5s ease, color 0.5s ease;
   }
   .cube-ico { font-size: 24px; line-height: 1; }
   .cube-lbl { font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
 
-  /* estado SEM NEXO: cards tortos, deslocados e em alerta */
+  /* estado SEM NEXO: cards em alerta + tremendo */
   .compare-stage.messy .cube {
-    transform: translate(var(--mx, 0), var(--my, 0)) rotate(var(--mr, 0));
     border-color: rgba(220, 38, 38, 0.38);
     background: #fff5f4;
     box-shadow: 0 10px 26px -16px rgba(220, 38, 38, 0.5);
@@ -980,26 +989,34 @@
   .compare-stage.messy .cube .cube-lbl { color: #c0341d; }
   .compare-stage.messy .cube .cube-lbl.on { display: none; }
 
-  /* tremor dessincronizado por card (cada um treme num ritmo) */
-  .compare-stage.messy .cube:nth-child(2) { animation-duration: 0.33s; animation-delay: -0.12s; z-index: 3; }
-  .compare-stage.messy .cube:nth-child(3) { animation-duration: 0.46s; animation-delay: -0.05s; z-index: 2; }
-  .compare-stage.messy .cube:nth-child(4) { animation-duration: 0.36s; animation-delay: -0.18s; z-index: 4; }
-  .compare-stage.messy .cube:nth-child(5) { animation-duration: 0.42s; animation-delay: -0.09s; z-index: 2; }
-  .compare-stage.messy .cube:nth-child(6) { animation-duration: 0.30s; animation-delay: -0.15s; z-index: 5; }
-  .compare-stage.messy .cube:nth-child(7) { animation-duration: 0.48s; animation-delay: -0.03s; z-index: 3; }
-  .compare-stage.messy .cube:nth-child(8) { animation-duration: 0.35s; animation-delay: -0.20s; z-index: 4; }
+  /* tremor dessincronizado + camadas sobrepostas por card */
+  .compare-stage.messy .cube-slot:nth-child(1) { z-index: 4; }
+  .compare-stage.messy .cube-slot:nth-child(2) { z-index: 3; }
+  .compare-stage.messy .cube-slot:nth-child(2) .cube { animation-duration: 0.33s; animation-delay: -0.12s; }
+  .compare-stage.messy .cube-slot:nth-child(3) { z-index: 2; }
+  .compare-stage.messy .cube-slot:nth-child(3) .cube { animation-duration: 0.46s; animation-delay: -0.05s; }
+  .compare-stage.messy .cube-slot:nth-child(4) { z-index: 5; }
+  .compare-stage.messy .cube-slot:nth-child(4) .cube { animation-duration: 0.36s; animation-delay: -0.18s; }
+  .compare-stage.messy .cube-slot:nth-child(5) { z-index: 2; }
+  .compare-stage.messy .cube-slot:nth-child(5) .cube { animation-duration: 0.42s; animation-delay: -0.09s; }
+  .compare-stage.messy .cube-slot:nth-child(6) { z-index: 5; }
+  .compare-stage.messy .cube-slot:nth-child(6) .cube { animation-duration: 0.30s; animation-delay: -0.15s; }
+  .compare-stage.messy .cube-slot:nth-child(7) { z-index: 3; }
+  .compare-stage.messy .cube-slot:nth-child(7) .cube { animation-duration: 0.48s; animation-delay: -0.03s; }
+  .compare-stage.messy .cube-slot:nth-child(8) { z-index: 4; }
+  .compare-stage.messy .cube-slot:nth-child(8) .cube { animation-duration: 0.35s; animation-delay: -0.20s; }
 
+  /* tremor leve, oscilando em torno de zero (a posição fica no slot) */
   @keyframes tremor {
-    0%, 100% { transform: translate(var(--mx, 0), var(--my, 0)) rotate(var(--mr, 0)); }
-    20% { transform: translate(calc(var(--mx, 0) + 1px), calc(var(--my, 0) - 1px)) rotate(calc(var(--mr, 0) + 0.8deg)); }
-    40% { transform: translate(calc(var(--mx, 0) - 1px), calc(var(--my, 0) + 0.5px)) rotate(calc(var(--mr, 0) - 0.8deg)); }
-    60% { transform: translate(calc(var(--mx, 0) + 0.5px), calc(var(--my, 0) + 1px)) rotate(calc(var(--mr, 0) + 0.5deg)); }
-    80% { transform: translate(calc(var(--mx, 0) - 0.5px), calc(var(--my, 0) - 0.5px)) rotate(calc(var(--mr, 0) - 0.5deg)); }
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    20% { transform: translate(1px, -1px) rotate(0.8deg); }
+    40% { transform: translate(-1px, 0.5px) rotate(-0.8deg); }
+    60% { transform: translate(0.5px, 1px) rotate(0.5deg); }
+    80% { transform: translate(-0.5px, -0.5px) rotate(-0.5deg); }
   }
 
-  /* estado COM NEXO: cards alinhados e em verde da marca */
+  /* estado COM NEXO: cards alinhados, em verde, sem tremor */
   .compare-stage:not(.messy) .cube {
-    transform: none;
     animation: none;
     border-color: rgba(0, 228, 124, 0.5);
     background: var(--green-soft);
@@ -1009,12 +1026,12 @@
   .compare-stage:not(.messy) .cube .cube-lbl.off { display: none; }
 
   @media (max-width: 860px) {
-    .compare-stage.messy .cube {
+    .compare-stage.messy .cube-slot {
       transform: translate(calc(var(--mx, 0) * 0.5), calc(var(--my, 0) * 0.5)) rotate(var(--mr, 0));
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .cube { transition: border-color 0.3s ease, background 0.3s ease, color 0.3s ease; }
+    .cube-slot { transition: none; }
     .compare-stage.messy .cube { animation: none; }
   }
 
@@ -1263,9 +1280,9 @@
 
           <form data-form>
             <div class="field-stack">
-              <input class="input" type="text" placeholder="Seu nome completo" required />
-              <input class="input" type="email" placeholder="seu@email.com" required />
-              <input class="input" type="text" placeholder="O que você organiza? (Ex: festivais, summit)" />
+              <input class="input" name="fullname" type="text" placeholder="Seu nome completo" required />
+              <input class="input" name="email" type="email" placeholder="seu@email.com" required />
+              <input class="input" name="organiza" type="text" placeholder="O que você organiza? (Ex: festivais, summit)" />
             </div>
 
             <div class="terms">
@@ -1685,45 +1702,61 @@
     </div>
 
     <div class="compare-stage messy reveal" id="compareStage">
-      <div class="cube" style="--mx:-28px; --my:14px; --mr:-8deg;">
-        <span class="cube-ico">🧩</span>
-        <span class="cube-lbl off">4 sistemas</span>
-        <span class="cube-lbl on">1 hub só</span>
+      <div class="cube-slot" style="--mx:-28px; --my:14px; --mr:-8deg;">
+        <div class="cube">
+          <span class="cube-ico">🧩</span>
+          <span class="cube-lbl off">4 sistemas</span>
+          <span class="cube-lbl on">1 hub só</span>
+        </div>
       </div>
-      <div class="cube" style="--mx:24px; --my:-18px; --mr:6deg;">
-        <span class="cube-ico">🔗</span>
-        <span class="cube-lbl off">Dados perdidos</span>
-        <span class="cube-lbl on">Tudo salvo</span>
+      <div class="cube-slot" style="--mx:24px; --my:-18px; --mr:6deg;">
+        <div class="cube">
+          <span class="cube-ico">🔗</span>
+          <span class="cube-lbl off">Dados perdidos</span>
+          <span class="cube-lbl on">Tudo salvo</span>
+        </div>
       </div>
-      <div class="cube" style="--mx:-16px; --my:-24px; --mr:5deg;">
-        <span class="cube-ico">💸</span>
-        <span class="cube-lbl off">Custo surpresa</span>
-        <span class="cube-lbl on">Custo claro</span>
+      <div class="cube-slot" style="--mx:-16px; --my:-24px; --mr:5deg;">
+        <div class="cube">
+          <span class="cube-ico">💸</span>
+          <span class="cube-lbl off">Custo surpresa</span>
+          <span class="cube-lbl on">Custo claro</span>
+        </div>
       </div>
-      <div class="cube" style="--mx:30px; --my:20px; --mr:-6deg;">
-        <span class="cube-ico">🌫️</span>
-        <span class="cube-lbl off">Decisão no escuro</span>
-        <span class="cube-lbl on">Decisão com dados</span>
+      <div class="cube-slot" style="--mx:30px; --my:20px; --mr:-6deg;">
+        <div class="cube">
+          <span class="cube-ico">🌫️</span>
+          <span class="cube-lbl off">Decisão no escuro</span>
+          <span class="cube-lbl on">Decisão com dados</span>
+        </div>
       </div>
-      <div class="cube" style="--mx:-30px; --my:-10px; --mr:9deg;">
-        <span class="cube-ico">📝</span>
-        <span class="cube-lbl off">Relatório manual</span>
-        <span class="cube-lbl on">Relatório automático</span>
+      <div class="cube-slot" style="--mx:-30px; --my:-10px; --mr:9deg;">
+        <div class="cube">
+          <span class="cube-ico">📝</span>
+          <span class="cube-lbl off">Relatório manual</span>
+          <span class="cube-lbl on">Relatório automático</span>
+        </div>
       </div>
-      <div class="cube" style="--mx:18px; --my:26px; --mr:-9deg;">
-        <span class="cube-ico">🕳️</span>
-        <span class="cube-lbl off">Sem histórico</span>
-        <span class="cube-lbl on">Histórico completo</span>
+      <div class="cube-slot" style="--mx:18px; --my:26px; --mr:-9deg;">
+        <div class="cube">
+          <span class="cube-ico">🕳️</span>
+          <span class="cube-lbl off">Sem histórico</span>
+          <span class="cube-lbl on">Histórico completo</span>
+        </div>
       </div>
-      <div class="cube" style="--mx:-12px; --my:22px; --mr:7deg;">
-        <span class="cube-ico">📋</span>
-        <span class="cube-lbl off">Planilha solta</span>
-        <span class="cube-lbl on">Tudo conectado</span>
+      <div class="cube-slot" style="--mx:-12px; --my:22px; --mr:7deg;">
+        <div class="cube">
+          <span class="cube-ico">📋</span>
+          <span class="cube-lbl off">Planilha solta</span>
+          <span class="cube-lbl on">Tudo conectado</span>
+        </div>
       </div>
-      <div class="cube" style="--mx:26px; --my:-8px; --mr:-5deg;">
-        <span class="cube-ico">🚚</span>
-        <span class="cube-lbl off">Equipe perdida</span>
-        <span class="cube-lbl on">Equipe alinhada</span>
+      <div class="cube-slot" style="--mx:26px; --my:-8px; --mr:-5deg;">
+        <div class="cube">
+          <span class="cube-ico">🚚</span>
+          <span class="cube-lbl off">Equipe perdida</span>
+          <span class="cube-lbl on">Equipe alinhada</span>
+        </div>
       </div>
     </div>
 
@@ -1896,9 +1929,41 @@
     });
   });
 
-  // Form fake submit
+  // === Captação real → HubSpot (Forms Submission API) ===
+  // portalId e formGuid NÃO são segredos (forms embedados expõem os mesmos).
+  const HUBSPOT_PORTAL_ID = '51566439';          // teu hub — confira em Configurações → Conta e cobrança
+  const HUBSPOT_FORM_GUID = 'COLE_O_GUID_AQUI';  // HubSpot → Marketing → Formulários → criar form → pega o GUID
+
+  async function sendToHubSpot(form) {
+    const val = (sel) => (form.querySelector(sel)?.value || '').trim();
+    const email = val('input[type=email], input[name=email]');
+    const fullname = val('input[name=fullname]');
+    const organiza = val('input[name=organiza]');
+    const [firstname, ...rest] = fullname.split(' ');
+    const lastname = rest.join(' ');
+
+    const fields = [{ name: 'email', value: email }];
+    if (firstname) fields.push({ name: 'firstname', value: firstname });
+    if (lastname)  fields.push({ name: 'lastname',  value: lastname });
+    if (organiza)  fields.push({ name: 'o_que_organiza', value: organiza }); // propriedade custom no HubSpot
+
+    const res = await fetch(
+      `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fields,
+          context: { pageUri: location.href, pageName: document.title }
+        })
+      }
+    );
+    if (!res.ok) throw new Error('HubSpot respondeu ' + res.status + ': ' + (await res.text()));
+    return res.json();
+  }
+
   document.querySelectorAll('[data-form]').forEach((form) => {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const email = form.querySelector('input[type=email]');
       const btn = form.querySelector('button[type=submit]');
@@ -1910,12 +1975,19 @@
       btn.style.opacity = '0.7';
       const original = btn.textContent;
       btn.textContent = 'Enviando...';
-      setTimeout(() => {
+      try {
+        await sendToHubSpot(form);
         const success = form.querySelector('[data-success]') || form.parentElement.querySelector('[data-success]');
         if (success) success.classList.add('show');
         btn.textContent = '✓ Você está na lista';
         form.querySelectorAll('input').forEach(i => { i.value = ''; i.disabled = true; });
-      }, 700);
+      } catch (err) {
+        console.error('Falha ao enviar pro HubSpot:', err);
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.textContent = original;
+        alert('Ops, não consegui enviar agora. Tenta de novo em instantes.');
+      }
     });
   });
 </script>
