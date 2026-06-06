@@ -116,6 +116,15 @@
     outline: none;
     border-color: var(--black);
   }
+  /* Select estilizado igual aos inputs */
+  select.input {
+    appearance: none; -webkit-appearance: none; cursor: pointer;
+    padding-right: 40px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23888' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 14px center; background-size: 12px;
+  }
+  select.input:required:invalid { color: var(--dim); }
+  select.input option { color: var(--text); }
 
   /* ---------- Marquee ---------- */
   .marquee {
@@ -953,12 +962,20 @@
 
   /* SLOT = posição: transição suave entre bagunça e grade (nos dois sentidos) */
   .cube-slot {
-    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1);
     will-change: transform;
   }
   .compare-stage.messy .cube-slot {
     transform: translate(var(--mx, 0), var(--my, 0)) rotate(var(--mr, 0));
   }
+  /* escalonamento leve: os cards assentam em sequência (mais orgânico) */
+  .cube-slot:nth-child(2) { transition-delay: 0.03s; }
+  .cube-slot:nth-child(3) { transition-delay: 0.06s; }
+  .cube-slot:nth-child(4) { transition-delay: 0.09s; }
+  .cube-slot:nth-child(5) { transition-delay: 0.05s; }
+  .cube-slot:nth-child(6) { transition-delay: 0.08s; }
+  .cube-slot:nth-child(7) { transition-delay: 0.11s; }
+  .cube-slot:nth-child(8) { transition-delay: 0.07s; }
 
   /* CARD = visual + tremor (independente da posição) */
   .cube {
@@ -973,8 +990,8 @@
     border-radius: 16px;
     background: var(--white);
     border: 1px solid var(--line);
-    transition: border-color 0.5s ease, background 0.5s ease,
-                box-shadow 0.5s ease, color 0.5s ease;
+    transition: border-color 0.75s ease, background 0.75s ease,
+                box-shadow 0.75s ease, color 0.75s ease;
   }
   .cube-ico { font-size: 24px; line-height: 1; }
   .cube-lbl { font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
@@ -1282,7 +1299,17 @@
             <div class="field-stack">
               <input class="input" name="fullname" type="text" placeholder="Seu nome completo" required />
               <input class="input" name="email" type="email" placeholder="seu@email.com" required />
-              <input class="input" name="organiza" type="text" placeholder="O que você organiza? (Ex: festivais, summit)" />
+              <input class="input" name="phone" type="tel" placeholder="WhatsApp / telefone" autocomplete="tel" />
+              <select class="input" name="organiza" required>
+                <option value="" disabled selected hidden>O que você organiza?</option>
+                <option>Eventos corporativos / summits</option>
+                <option>Festivais e shows</option>
+                <option>Congressos e feiras</option>
+                <option>Casamentos e eventos sociais</option>
+                <option>Eventos esportivos</option>
+                <option>Produtora (vários tipos)</option>
+                <option>Outros</option>
+              </select>
             </div>
 
             <div class="terms">
@@ -1938,13 +1965,15 @@
     const val = (sel) => (form.querySelector(sel)?.value || '').trim();
     const email = val('input[type=email], input[name=email]');
     const fullname = val('input[name=fullname]');
-    const organiza = val('input[name=organiza]');
+    const phone = val('input[name=phone]');
+    const organiza = val('[name=organiza]');
     const [firstname, ...rest] = fullname.split(' ');
     const lastname = rest.join(' ');
 
     const fields = [{ name: 'email', value: email }];
     if (firstname) fields.push({ name: 'firstname', value: firstname });
     if (lastname)  fields.push({ name: 'lastname',  value: lastname });
+    if (phone)     fields.push({ name: 'phone', value: phone });
     if (organiza)  fields.push({ name: 'o_que_organiza', value: organiza }); // propriedade custom no HubSpot
 
     const res = await fetch(
