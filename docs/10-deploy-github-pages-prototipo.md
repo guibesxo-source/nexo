@@ -1,10 +1,12 @@
 # 10 - Deploy GitHub Pages e Prototipo Estatico
 
 **Produto:** Nexo  
-**Atualizado:** 2026-06-05  
+**Atualizado:** 2026-06-09  
 **Repositorio:** `https://github.com/guibesxo-source/nexo.git`  
 **GitHub Pages:** `https://guibesxo-source.github.io/nexo/`  
 **Commit base registrado:** `ba20dcb Atualiza app e adiciona login demo`
+
+> **Nota (2026-06-09):** este repositorio permanece como **prototipo/LP**. A app real (Next.js + Supabase) vive no repositorio separado `guibesxo-source/nexo-app` (local: `C:\Users\guibess\Desktop\nexo-app`). O arquivo `Nexo Site.html` (copia duplicada da LP) foi removido; `ads.html` foi movido para `Criativos/`.
 
 ---
 
@@ -32,7 +34,12 @@ LP              login demo       app/dashboard
 | `app/components.jsx` | Componentes compartilhados do app: sidebar, topbar, cards, KPIs, badges, graficos etc. |
 | `app/views-main.jsx` | Views principais: dashboard, eventos, inscritos e financeiro. |
 | `app/views-extra.jsx` | Views extras: checklist, membros e configuracoes. |
-| `old/` | Backups locais ignorados pelo Git. |
+| `site/site.css` | Estilos da landing page. |
+| `image-slot.js` | Custom element `<image-slot>` usado pela LP para imagens/placeholders. |
+| `Imagens/` | Imagens da LP (ex.: `fundosite01.jpg`, fundo do hero). |
+| `Criativos/` | Criativos de anuncio exportados em PNG (`1x1/`, `4x5/`, `9x16/`) + `ads.html`, stub de preview **incompleto** (depende de `ads/ads.css`, `ads/ads-content.js` e `design-canvas.jsx`, que nao existem no repo). |
+| `docs/` | Pacote de documentacao de produto (01-11). |
+| `old/` e `_old/` | Backups locais ignorados pelo Git. |
 
 ---
 
@@ -96,7 +103,7 @@ Esta guarda e apenas demonstrativa. Quando houver autenticacao real, ela deve se
 Todos os comandos abaixo partem da pasta:
 
 ```powershell
-cd C:\Users\guibess\Desktop\IA\projetos\Nexo
+cd C:\Users\guibess\Desktop\Nexo
 ```
 
 Depois de editar qualquer arquivo:
@@ -119,13 +126,13 @@ Como este prototipo e estatico, ele pode ser aberto no navegador, mas o ideal e 
 Opcao com Node, sem instalar dependencias:
 
 ```powershell
-cd C:\Users\guibess\Desktop\IA\projetos\Nexo
+cd C:\Users\guibess\Desktop\Nexo
 npx serve .
 ```
 
 Depois, abrir a URL indicada pelo terminal.
 
-Se preferir evitar `npx`, qualquer servidor estatico funciona. O importante e a raiz servida ser a pasta `projetos/Nexo`.
+Se preferir evitar `npx`, qualquer servidor estatico funciona. O importante e a raiz servida ser a pasta `Desktop\Nexo`.
 
 ---
 

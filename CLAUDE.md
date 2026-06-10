@@ -23,21 +23,27 @@ O Nexo é **pessoal** e NÃO deve nunca ser misturado com o trabalho da Prolog A
 
 ## Estado atual do código
 
-Hoje a pasta é um **protótipo estático (HTML/CSS/JS)** — a app Next.js ainda não foi construída.
+Este repo é o **protótipo estático (HTML/CSS/JS)** + LP publicada no GitHub Pages. A **app real Next.js vive em repo separado**: `guibesxo-source/nexo-app` (local: `C:\Users\guibess\Desktop\nexo-app`).
 
 | Arquivo / pasta | O que é |
 |-----------------|---------|
 | `index.html` | Landing page v2 — artefato **canônico** de marca/copy |
 | `login.html` | Tela de login do protótipo |
 | `app.html` + `app/` | Protótipo da área logada |
+| `site/site.css` · `image-slot.js` · `Imagens/` | Assets da LP |
+| `Criativos/` | Criativos de anúncio (PNGs em `1x1/`, `4x5/`, `9x16/`) + `ads.html` (stub de preview, incompleto) |
 | `docs/` | Pacote de produto (01–11) — visão, PRD, arquitetura, dados, roadmap, GTM, design system, métricas, deploy, domínio |
 | `_old/` | Backups locais (fora do repo, no `.gitignore`) |
 
 Fluxo do protótipo: **LP → login → app**. Ver `docs/10-deploy-github-pages-prototipo.md`.
 
+> `Nexo Site.html` (cópia duplicada da LP) foi removido em 2026-06-09.
+
 ## Stack-alvo (decidida em 2026-06-05)
 
 **Next.js (App Router) + Supabase + Vercel + Stripe** · HubSpot para captação de leads.
+
+> **A app nasceu em 2026-06-09** (fase F1 do roadmap) no repo irmão `nexo-app`: esqueleto Next.js (App Router, TS, Tailwind v4) com rotas stub, clients Supabase (`@supabase/ssr`), validações Zod e design tokens da marca portados via `@theme`. Sem banco/auth/billing ainda.
 
 - **Linguagem:** TypeScript ponta a ponta; tipos do banco via `supabase gen types`.
 - **Validação:** Zod nas bordas (formulários e route handlers).

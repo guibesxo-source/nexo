@@ -1,2 +1,7 @@
 old/
 _old/
+node_modules/
+*.log
+Thumbs.db
+desktop.ini
+.claude/settings.local.json
