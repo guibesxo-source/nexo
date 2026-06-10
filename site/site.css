@@ -315,10 +315,10 @@
   .hero-bg image-slot {
     display: block;
     position: absolute;
-    right: clamp(10px, 2vw, 32px);
+    right: clamp(74px, 7vw, 136px);
     top: 55%;
     transform: translateY(-50%);
-    width: min(56vw, 820px);
+    width: min(64vw, 980px);
     aspect-ratio: 1.42 / 1;
     height: auto;
     background-image: url("../Imagens/fundosite01.jpg");
@@ -1364,6 +1364,31 @@
   gap: 12px;
   margin-top: 30px;
 }
+.availability-note {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+.availability-note span,
+.availability-copy {
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  max-width: 100%;
+  border: 1px solid rgba(0,228,124,0.34);
+  border-radius: 999px;
+  background: rgba(0,228,124,0.10);
+  color: var(--green);
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 800;
+}
+.availability-copy {
+  margin: 20px auto 28px;
+  color: var(--white);
+  width: fit-content;
+}
 .hero-trust {
   margin-top: 28px;
   display: inline-flex;
@@ -1602,6 +1627,26 @@
   color: rgba(255,255,255,0.45);
 }
 .m-nav .on { color: var(--green); }
+
+.hubspot-form {
+  width: min(100%, 560px);
+  margin: 30px auto 0;
+}
+.hubspot-form .field-stack {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.hubspot-form .input {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.18);
+  color: var(--white);
+}
+.hubspot-form .input::placeholder { color: var(--muted-inv); }
+.hubspot-form select.input { color: var(--muted-inv); }
+.hubspot-form select.input:valid { color: var(--white); }
+.hubspot-form .btn { width: 100%; }
 
 .problem-top {
   display: grid;
@@ -2038,6 +2083,7 @@ footer.site .foot-grid {
       linear-gradient(90deg, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.90) 58%, rgba(0,0,0,0.74) 100%),
       radial-gradient(520px 420px at 24% 38%, rgba(0,228,124,0.12), transparent 64%);
   }
+  .hubspot-form .field-stack { grid-template-columns: 1fr; }
   .hero-trust,
   .compare-head,
   .cr,

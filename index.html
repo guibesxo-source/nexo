@@ -73,7 +73,7 @@
     </div>
     <div class="nav-cta">
       <a href="app.html" class="btn btn-outline btn-sm">Login</a>
-      <a href="#como-funciona" class="btn btn-primary btn-sm">Descubra</a>
+      <a href="index.html#hubspot-form" class="btn btn-primary btn-sm">Descubra</a>
       <button class="menu-btn" id="menuBtn" aria-label="Menu"><svg class="ico"><use href="#i-menu"/></svg></button>
     </div>
   </div>
@@ -86,7 +86,7 @@
   <a href="#precos">Preços</a>
   <a href="#sobre">Sobre</a>
   <a href="app.html" class="btn btn-outline">Login</a>
-  <a href="#como-funciona" class="btn btn-primary">Descubra</a>
+  <a href="index.html#hubspot-form" class="btn btn-primary">Descubra</a>
 </div>
 
 <!-- ============== HERO ============== -->
@@ -100,8 +100,12 @@
         <span class="eyebrow on-dark"><span class="pulse"></span>Back-office do evento</span>
         <h1 class="h-display">O hub que faz<br /><span class="pill-mark">os seus eventos</span><br />acontecerem.</h1>
         <p class="lead">Inscritos, checklist e financeiro do seu evento num só lugar — em tempo real, sem planilha. Do lançamento ao pós-evento.</p>
+        <div class="availability-note">
+          <span>Hoje: versão web</span>
+          <span>Em breve: app mobile para download</span>
+        </div>
         <div class="hero-cta">
-          <a href="#como-funciona" class="btn btn-primary btn-lg">Descubra <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+          <a href="index.html#hubspot-form" class="btn btn-primary btn-lg">Descubra <svg class="ico"><use href="#i-arrow-right"/></svg></a>
           <a href="#como-funciona" class="btn btn-ghost-dark btn-lg">Ver como funciona</a>
         </div>
         <div class="hero-trust">
@@ -630,7 +634,7 @@
         <h3>Beta gratuito · vaga de fundador</h3>
         <p>Use o Nexo de graça durante o beta privado de 2026 e bloqueie o preço de fundador quando lançarmos.</p>
       </div>
-      <a href="#como-funciona" class="btn btn-primary">Descubra <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+      <a href="index.html#hubspot-form" class="btn btn-primary">Descubra <svg class="ico"><use href="#i-arrow-right"/></svg></a>
     </div>
 
     <div style="text-align:center;" class="reveal">
@@ -646,7 +650,7 @@
         <div class="pdesc">Para o produtor independente que opera sozinho.</div>
         <div class="price"><span class="cur">R$</span><span class="amt" data-price data-m="49" data-a="41">49</span><span class="per">/mês</span></div>
         <div class="price-note" data-note>Preço de fundador · cobrado mensalmente</div>
-        <a href="#como-funciona" class="btn btn-outline">Descubra</a>
+        <a href="index.html#hubspot-form" class="btn btn-outline">Descubra</a>
         <ul>
           <li><svg class="ico"><use href="#i-check"/></svg>Até 3 eventos ativos</li>
           <li><svg class="ico"><use href="#i-check"/></svg>Inscritos, checklist e financeiro</li>
@@ -661,7 +665,7 @@
         <div class="pdesc">Para o gestor corporativo e equipes que operam juntas.</div>
         <div class="price"><span class="cur">R$</span><span class="amt" data-price data-m="149" data-a="124">149</span><span class="per">/mês</span></div>
         <div class="price-note" data-note>Preço de fundador · cobrado mensalmente</div>
-        <a href="#como-funciona" class="btn btn-primary">Descubra</a>
+        <a href="index.html#hubspot-form" class="btn btn-primary">Descubra</a>
         <ul>
           <li><svg class="ico"><use href="#i-check"/></svg>Eventos ilimitados</li>
           <li><svg class="ico"><use href="#i-check"/></svg>Tempo real e colaboração</li>
@@ -689,6 +693,38 @@
   </div>
 </section>
 
+<!-- ============== FORM HUBSPOT ============== -->
+<section id="hubspot-form" class="waitlist">
+  <div class="container">
+    <div class="waitlist-inner reveal">
+      <span class="eyebrow on-dark"><span class="pulse"></span>Beta privado · versão web</span>
+      <h2 class="h-section">Descubra o Nexo por dentro.</h2>
+      <p class="lead">Entre na lista para testar o hub que centraliza inscritos, checklist e financeiro do seu evento.</p>
+      <p class="availability-copy">O beta começa pela versão web. O app mobile para download entra em breve.</p>
+
+      <form class="hubspot-form" data-form>
+        <div class="field-stack">
+          <input class="input" name="fullname" type="text" placeholder="Seu nome completo" required />
+          <input class="input" name="email" type="email" placeholder="seu@email.com" required />
+          <input class="input" name="phone" type="tel" placeholder="WhatsApp / telefone" autocomplete="tel" />
+          <select class="input" name="organiza" required>
+            <option value="" disabled selected hidden>O que você organiza?</option>
+            <option>Eventos corporativos / summits</option>
+            <option>Festivais e shows</option>
+            <option>Congressos e feiras</option>
+            <option>Casamentos e eventos sociais</option>
+            <option>Eventos educacionais / workshops</option>
+            <option>Outro tipo de evento</option>
+          </select>
+        </div>
+        <button class="btn btn-primary btn-lg" type="submit">Quero descobrir o Nexo</button>
+      </form>
+      <div class="form-success" data-success>Cadastro recebido. Vamos te chamar para o beta.</div>
+      <p class="microcopy">Vagas limitadas · Sem spam · Cancele quando quiser</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============== CTA FINAL ============== -->
 <section class="cta-final">
   <div class="container cta-inner">
@@ -696,7 +732,7 @@
     <h2 class="h-section reveal">Saia do caos. Comece pelo seu próximo evento.</h2>
     <p class="lead reveal">Seja um dos primeiros a transformar a fragmentação em um hub único. O dinheiro do evento deixa de ser um mistério.</p>
     <div class="hero-cta reveal">
-      <a href="#como-funciona" class="btn btn-primary btn-lg">Descubra <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+      <a href="index.html#hubspot-form" class="btn btn-primary btn-lg">Descubra <svg class="ico"><use href="#i-arrow-right"/></svg></a>
       <a href="app.html" class="btn btn-ghost-dark btn-lg">Login</a>
     </div>
     <div class="cta-micro reveal">
@@ -726,7 +762,7 @@
         <h4>Empresa</h4>
         <a href="#sobre">Sobre</a>
         <a href="#problema">O problema</a>
-        <a href="#como-funciona">Descubra</a>
+        <a href="index.html#hubspot-form">Descubra</a>
       </div>
       <div class="foot-col">
         <h4>Recursos</h4>
@@ -776,7 +812,73 @@
   const mnav = document.getElementById('mnav');
   menuBtn?.addEventListener('click', () => mnav.classList.toggle('open'));
   mnav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mnav.classList.remove('open')));
+
+  // HubSpot beta form
+  const HUBSPOT_PORTAL_ID = '51566439';
+  const HUBSPOT_FORM_GUID = '0c832958-aff1-44b2-bd65-65ad772dab5a';
+
+  async function sendToHubSpot(form) {
+    const val = (sel) => (form.querySelector(sel)?.value || '').trim();
+    const fullname = val('input[name=fullname]');
+    const email = val('input[name=email], input[type=email]');
+    const phone = val('input[name=phone]');
+    const organiza = val('[name=organiza]');
+    const [firstname, ...rest] = fullname.split(' ');
+    const lastname = rest.join(' ');
+
+    const fields = [{ name: 'email', value: email }];
+    if (firstname) fields.push({ name: 'firstname', value: firstname });
+    if (lastname) fields.push({ name: 'lastname', value: lastname });
+    if (phone) fields.push({ name: 'phone', value: phone });
+    if (organiza) fields.push({ name: 'segmento', value: organiza });
+
+    const res = await fetch(`https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        fields,
+        context: {
+          hutk: (document.cookie.match(/hubspotutk=([^;]+)/) || [])[1],
+          pageUri: location.href,
+          pageName: document.title
+        }
+      })
+    });
+
+    if (!res.ok) throw new Error('HubSpot respondeu ' + res.status + ': ' + (await res.text()));
+    return res.json();
+  }
+
+  document.querySelectorAll('[data-form]').forEach((form) => {
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+
+      const btn = form.querySelector('button[type=submit]');
+      const success = form.parentElement.querySelector('[data-success]');
+      const original = btn.textContent;
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+
+      try {
+        await sendToHubSpot(form);
+        form.querySelectorAll('input, select').forEach((input) => {
+          input.value = '';
+          input.disabled = true;
+        });
+        btn.style.display = 'none';
+        if (success) success.classList.add('show');
+      } catch (err) {
+        console.error('Falha ao enviar para o HubSpot:', err);
+        btn.disabled = false;
+        btn.textContent = original;
+        alert('Não consegui enviar agora. Tenta de novo em instantes.');
+      }
+    });
+  });
 </script>
+<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/51566439.js"></script>
 
 </body>
 </html>

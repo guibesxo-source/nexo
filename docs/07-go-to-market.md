@@ -48,7 +48,9 @@ LP (nexo) → Formulário HubSpot (waitlist) → Qualificação → Convite ao b
   comunidade)                            fragmentação)
 ```
 
-- **Captação:** embed oficial do HubSpot na LP (portal `51566439`, form `5160b379-11ca-4043-a14f-a0f19c468b3c`). Campos mínimos: e-mail + nome da empresa.
+- **Captação:** formulário HubSpot na LP canônica `index.html` (portal `51566439`, form `0c832958-aff1-44b2-bd65-65ad772dab5a`). Campos atuais: nome, e-mail, telefone/WhatsApp e segmento do tipo de evento.
+- **CTA principal:** botões `Descubra` devem levar para `index.html#hubspot-form`, mantendo a LP como ponto de conversão.
+- **Disponibilidade anunciada:** comunicar o Nexo como produto **somente web neste momento**. A versão mobile para download deve ser posicionada como **em breve**, sem prometer disponibilidade imediata em app stores.
 - **Próximo passo (combinado):** montar **réguas de CRM** no HubSpot para nutrir o lead do beta (boas-vindas, qualificação, convite, ativação).
 - **Qualificação:** priorizar leads que batem com o [ICP](./03-personas-icp.md).
 
